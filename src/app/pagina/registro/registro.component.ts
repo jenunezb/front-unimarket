@@ -19,4 +19,5 @@ export class RegistroComponent {
     public sonIguales():boolean{
       return this.usuario.password == this.usuario.confirmaPassword;
       }
+  
 }

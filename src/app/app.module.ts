@@ -7,13 +7,15 @@ import { RegistroComponent } from './pagina/registro/registro.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.component';
+import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 @NgModule({
 declarations: [
 AppComponent,
 InicioComponent,
 LoginComponent,
 RegistroComponent,
-CrearProductoComponent
+CrearProductoComponent,
+BusquedaComponent
 ],
 imports: [
 BrowserModule,
