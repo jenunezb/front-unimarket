@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.component';
 import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
+import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
 @NgModule({
 declarations: [
 AppComponent,
@@ -15,7 +16,8 @@ InicioComponent,
 LoginComponent,
 RegistroComponent,
 CrearProductoComponent,
-BusquedaComponent
+BusquedaComponent,
+GestionProductosComponent
 ],
 imports: [
 BrowserModule,
