@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { ProductoService } from 'src/app/servicios/producto.service';
+
 @Component({
   selector: 'app-gestion-productos',
   templateUrl: './gestion-productos.component.html',
@@ -38,5 +39,14 @@ export class GestionProductosComponent implements OnInit {
       this.textoBtnEliminar = "";
     }
   }
+
+  public borrarProductos(){ 
+    this.seleccionados.forEach(e => { 
+    this.productos = this.productos.filter(i => i != e); 
+    }); 
+    this.seleccionados = []; 
+    this.actualizarMensaje(); 
+    }
+    
 
 }
