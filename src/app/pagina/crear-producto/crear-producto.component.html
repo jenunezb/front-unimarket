@@ -26,5 +26,6 @@
         <option [value]="i+1" *ngFor="let item of categorias; index as i" >{{item}}</option>
         </select>
         </div>
-        <button type="submit" [disabled]="f.invalid" >Crear nuevo producto</button>
-        </form>
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary"><i class="fa-solid 
+            {{esEdicion ? 'fa-pencil' : 'fa-circle-plus'}} me-1"></i>{{ esEdicion ? 'Editar' : 'Crear' }} Producto</button>
+    </form>

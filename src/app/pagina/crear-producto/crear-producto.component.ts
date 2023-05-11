@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 
 @Component({
@@ -10,10 +11,15 @@ export class CrearProductoComponent {
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
+  private route:ActivatedRoute;
+  esEdicion : boolean;
 
   constructor() {
     this.producto = new ProductoDTO();
     this.categorias = [];
+    
+    this.route = new ActivatedRoute();
+    this.esEdicion =false;
   }
 
   ngOnInit(): void {
