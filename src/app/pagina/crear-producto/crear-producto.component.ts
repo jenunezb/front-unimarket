@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 
 @Component({
@@ -13,6 +13,8 @@ export class CrearProductoComponent {
   producto: ProductoDTO;
   private route:ActivatedRoute;
   esEdicion : boolean;
+  codigoProducto:any; //no estoy seguro de declararlo así
+  productoService:any; //no estoy seguro de declararlo así
 
   constructor() {
     this.producto = new ProductoDTO();
@@ -20,6 +22,15 @@ export class CrearProductoComponent {
     
     this.route = new ActivatedRoute();
     this.esEdicion =false;
+
+    this.route.params.subscribe(params => {
+      this.codigoProducto = params["codigo"];
+      let objetoProducto = this.productoService.obtener(this.codigoProducto);
+      if(objetoProducto != null){
+      this.producto = objetoProducto;
+      this.esEdicion = true;
+      }
+      });
   }
 
   ngOnInit(): void {
@@ -36,6 +47,9 @@ export class CrearProductoComponent {
     }
   }
   public crearProducto() {
+
+    //cree el producto o lo edite según el caso (haga uso de la variable esEdicion para controlar qué función llamar).
+
     if (this.archivos != null && this.archivos.length > 0) {
       console.log(this.producto);
     } else {
@@ -43,4 +57,5 @@ export class CrearProductoComponent {
     }
   }
 }
+
 
