@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 
 @Component({
   selector: 'app-detalle-producto',
@@ -8,4 +9,14 @@ import { Component } from '@angular/core';
 
 export class DetalleProductoComponent {
   
+  carritoService:CarritoService;
+  codigoProducto: any;
+
+  constructor(){
+    this.carritoService = new CarritoService();
+  }
+
+  public agregarCarrito(){
+    this.carritoService.agregar(this.codigoProducto);
+    }
 }

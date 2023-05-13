@@ -7,6 +7,9 @@ productos: number[];
 
 constructor() { 
 this.productos = []; 
+this.productos.push(1);
+this.productos.push(3);
+this.productos.push(4);
 } 
 public agregar(codigo: number){ 
   //validar que el codigo no esté repetido
