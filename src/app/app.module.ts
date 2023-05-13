@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.component';
 import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
+import { DetalleProductoComponent } from './pagina/detalle-producto/detalle-producto.component';
+import { CarritoComponent } from './pagina/carrito/carrito.component';
 @NgModule({
 declarations: [
 AppComponent,
@@ -17,7 +19,9 @@ LoginComponent,
 RegistroComponent,
 CrearProductoComponent,
 BusquedaComponent,
-GestionProductosComponent
+GestionProductosComponent,
+DetalleProductoComponent,
+CarritoComponent
 ],
 imports: [
 BrowserModule,
