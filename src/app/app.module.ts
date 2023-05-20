@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ DetalleProductoComponent,
 CarritoComponent
 ],
 imports: [
+HttpClientModule,
 BrowserModule,
 AppRoutingModule,
 FormsModule

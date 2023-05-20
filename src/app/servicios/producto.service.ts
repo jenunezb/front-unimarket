@@ -16,7 +16,6 @@ export class ProductoService {
     this.productos.push(new ProductoGetDTO(7, "Aspiradora de mano", "Descripcion 7", 400000, 4, ["https://picsum.photos/450/225"], ["HOGAR"]));
     this.productos.push(new ProductoGetDTO(8, "Smartwatch Samsung", "Descripcion 8", 1800000, 3, ["https://picsum.photos/450/225"], ["TECNOLOGIA"]));
 
-    //CREE OTROS PRODUCTOS (AL MENOS 6 MÁS)
   }
   public listar(): ProductoGetDTO[] {
     return this.productos;

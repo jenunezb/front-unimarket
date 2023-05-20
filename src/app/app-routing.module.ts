@@ -17,6 +17,7 @@ const routes: Routes = [
     { path: "gestion-productos", component: GestionProductosComponent},
     { path: "editar-producto/:codigo", component: CrearProductoComponent },
     { path: "carrito", component: CarritoComponent},
+    { path: "editar-producto/:codigo", component: CrearProductoComponent },
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 @NgModule({

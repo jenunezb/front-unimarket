@@ -1,6 +1,6 @@
 <div class="card p-4">
     <div class="mb-3">
-        <button type="button"><i class="btn btn-success me-2" routerLink="/crear-producto"></i> Crear</button>        
+        <button type="button"> <i class="btn btn-success me-2" routerLink="/crear-producto"></i> Crear</button>
         <button type="button" class="btn btn-danger" [disabled]="seleccionados.length == 0"
                         data-bs-toggle="modal" data-bs-target="#borrar"><i class="fa-solid fa-trash me-1"></i>
                         Eliminar {{textoBtnEliminar}}</button>
@@ -42,8 +42,8 @@
                     <p>{{item.categorias}}</p>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-warning rounded-circle me-2"
-                        routerLink="/editar-producto/{{item.codigo}}"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" class="btn btn-warning rounded-circle me-2" 
+routerLink="/editar-producto/{{item.codigo}}"><i class="fa-solid fa-pen"></i>editar</button>
 
                 </td>
             </tr>
