@@ -1,30 +1,38 @@
-<form #f="ngForm" (ngSubmit)="crearProducto()" >
+<form #f="ngForm" (ngSubmit)="crearProducto()">
     <div>
-    <label >Nombre: </label>
-    <input type="text" name="nombre" [(ngModel)]="producto.nombre" required />
+        <label>Nombre: </label>
+        <input type="text" name="nombre" [(ngModel)]="producto.nombre" required />
     </div>
     <div>
-        <label >Descripcion: </label>
-        <textarea name="descripcion" [(ngModel)]="producto.descripcion" required ></textarea>
-        </div>
-        <div>
-        <label >Precio: </label>
+        <label>Descripcion: </label>
+        <textarea name="descripcion" [(ngModel)]="producto.descripcion" required></textarea>
+    </div>
+    <div>
+        <label>Precio: </label>
         <input type="number" name="precio" [(ngModel)]="producto.precio" required />
-        </div>
-        <div>
-        <label >Unidades: </label>
+    </div>
+    <div>
+        <label>Unidades: </label>
         <input type="number" name="unidades" [(ngModel)]="producto.unidades" required />
+    </div>
+    <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label">Imagen: </label>
+        <div class="col-sm-7">
+            <input type="file" class="form-control" name="imagenes" (change)="onFileChange($event)" multiple />
         </div>
-        <div>
-        <label >Imagen: </label>
-        <input type="file" name="imagenes" (change)="onFileChange($event)" multiple />
+        <div class="col-sm-3">
+            <button type="submit" [disabled]="archivos == null" class="btn btn-primary" (click)="subirImagenes()">
+                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Subir imágenes
+            </button>
         </div>
-        <div>
-        <label >Categoría: </label>
-        <select name="categorias" [(ngModel)]="producto.categorias" required >
-        <option value="" selected >Seleccione una categoría</option>
-        <option [value]="i+1" *ngFor="let item of categorias; index as i" >{{item}}</option>
+    </div>
+    <div>
+        <label>Categoría: </label>
+        <select name="categorias" [(ngModel)]="producto.categorias" required>
+            <option value="" selected>Seleccione una categoría</option>
+            <option [value]="i+1" *ngFor="let item of categorias; index as i">{{item}}</option>
         </select>
-        </div>
-        <button type="submit" [disabled]="f.invalid" class="btn btn-primary"><i class="fa-solid fa-circle-plus me-1"></i>{{txtBoton}}</button>
-    </form>
+    </div>
+    <!-- <button type="submit" [disabled]="f.invalid" class="btn btn-primary" (click)="crearProducto()"> -->
+        <!-- <i class="fa-solid fa-circle-plus me-1"></i>{{txtBoton}}</button> -->
+</form>

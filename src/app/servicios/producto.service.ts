@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductoGetDTO } from '../modelo/ProductoGetDTO';
+import { ProductoDTO } from '../modelo/ProductoDTO';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,4 +26,6 @@ export class ProductoService {
     return this.productos.find(p => p.codigo == codigo);
   }
 
+  // public crear(productos: ProductoDTO){
+  // }
 }

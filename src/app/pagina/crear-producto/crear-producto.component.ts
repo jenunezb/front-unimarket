@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
+import { CategoriaService } from 'src/app/servicios/categoria.service';
+import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 
 @Component({
@@ -17,7 +19,7 @@ export class CrearProductoComponent {
   codigoProducto:number;
   txtBoton : string = "Crear Producto";
 
-  constructor(private productoService:ProductoService) {
+  constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,private productoService:ProductoService) {
     this.producto = new ProductoDTO();
     this.codigoProducto =0;
     this.categorias = [];
@@ -59,6 +61,35 @@ export class CrearProductoComponent {
       console.log('Debe seleccionar al menos una imagen');
     }
   }
+
+  private cargarCategorias(){
+    this.categoriaService.listar().subscribe({
+    next: data => {
+    this.categorias = data.respuesta;
+    },
+    error: error => {
+    console.log(error.error);
+    }
+    });
+  }
+    
+  public subirImagenes() {
+    if (this.archivos != null && this.archivos.length > 0) {
+    const objeto = this.producto;
+    const formData = new FormData();
+    formData.append('file', this.archivos[0]);
+    this.imagenService.subir(formData).subscribe({
+    next: data => {
+    objeto.imagenes.push( data.respuesta.url );
+    },
+    error: error => {
+    console.log(error.error);
+    }
+    });
+    } else {
+    console.log('Debe seleccionar al menos una imagen y subirla');
+    }
+    }
 }
 
 
