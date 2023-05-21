@@ -21,7 +21,7 @@
         </div>
         <div>
         <label >Categoría: </label>
-        <select name="categoria" [(ngModel)]="producto.categoria" required >
+        <select name="categorias" [(ngModel)]="producto.categorias" required >
         <option value="" selected >Seleccione una categoría</option>
         <option [value]="i+1" *ngFor="let item of categorias; index as i" >{{item}}</option>
         </select>

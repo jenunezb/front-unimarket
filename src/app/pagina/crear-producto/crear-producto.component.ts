@@ -14,16 +14,17 @@ export class CrearProductoComponent {
   producto: ProductoDTO;
   private route:ActivatedRoute;
   esEdicion : boolean;
+  codigoProducto:number;
   txtBoton : string = "Crear Producto";
 
-  constructor() {
+  constructor(private productoService:ProductoService) {
     this.producto = new ProductoDTO();
+    this.codigoProducto =0;
     this.categorias = [];
     
     this.route = new ActivatedRoute();
     this.esEdicion =false;
-
-    /*
+    
     this.route.params.subscribe(params => { 
       this.codigoProducto = params["codigo"]; 
       let objetoProducto = this.productoService.obtener(this.codigoProducto); 
@@ -32,7 +33,7 @@ export class CrearProductoComponent {
       this.txtBoton = 'Editar Producto'; 
       } 
       });
-      */
+    
   }
 
   ngOnInit(): void {

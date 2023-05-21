@@ -12,6 +12,7 @@ import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
 import { DetalleProductoComponent } from './pagina/detalle-producto/detalle-producto.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
+import { AlertaComponent } from './pagina/alerta/alerta.component';
 @NgModule({
 declarations: [
 AppComponent,
@@ -22,7 +23,8 @@ CrearProductoComponent,
 BusquedaComponent,
 GestionProductosComponent,
 DetalleProductoComponent,
-CarritoComponent
+CarritoComponent,
+AlertaComponent
 ],
 imports: [
 HttpClientModule,
