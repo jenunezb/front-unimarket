@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
@@ -19,7 +19,8 @@ export class CrearProductoComponent {
   codigoProducto:number;
   txtBoton : string = "Crear Producto";
 
-  constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,private productoService:ProductoService,private route:ActivatedRoute) {
+  constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
+    private productoService:ProductoService,private route:ActivatedRoute, private router:Router) {
     this.producto = new ProductoDTO();
     this.codigoProducto =0;
     this.categorias = [];
@@ -52,6 +53,7 @@ export class CrearProductoComponent {
   public crearProducto() {
     
     if (this.archivos != null && this.archivos.length > 0) {
+      this.router.navigate(["/gestion-productos"]);
       console.log(this.producto);
     } else {
       console.log('Debe seleccionar al menos una imagen');

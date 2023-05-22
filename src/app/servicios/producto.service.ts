@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ProductoGetDTO } from '../modelo/ProductoGetDTO';
 import { ProductoDTO } from '../modelo/ProductoDTO';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
   productos: ProductoGetDTO[];
-  constructor() {
+  constructor(private router: Router) {
     this.productos = [];
     this.productos.push(new ProductoGetDTO(1, "Televisor LG 4K", "Descripcion 1", 3500000, 2, ["https://picsum.photos/450/225", "https://picsum.photos/450/225"], ["TECNOLOGIA"]));
     this.productos.push(new ProductoGetDTO(2, "Tenis Nike", "Descripcion 2", 650000, 4, ["https://picsum.photos/450/225"], ["ROPA", "DEPORTE"]));
@@ -26,6 +27,4 @@ export class ProductoService {
     return this.productos.find(p => p.codigo == codigo);
   }
 
-  // public crear(productos: ProductoDTO){
-  // }
 }
