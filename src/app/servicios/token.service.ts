@@ -34,6 +34,7 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
+<<<<<<< HEAD
     const tokenValue = this.getToken();
 
     if(tokenValue!== null ){
@@ -49,6 +50,9 @@ export class TokenService {
 
       this.router.navigate(["/"]);
     }
+=======
+    this.router.navigate(["/registro"]);
+>>>>>>> 113c92ef2d902aebbeab0563a3fc115372a1beb1
   }
 
   public logout() {
