@@ -31,7 +31,6 @@ export class AppComponent {
         this.mostrarBoton = false;
         this.mostrarLabel=true;
       }
-      console.log(tokenValue, 'token');
     });
 
     this.sharedService.nombreBoton$.subscribe(valor => {
