@@ -27,7 +27,7 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
-    this.router.navigate(["/"]);
+    this.router.navigate(["/registro"]);
   }
 
   public logout() {

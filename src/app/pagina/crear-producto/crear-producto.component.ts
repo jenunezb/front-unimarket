@@ -4,6 +4,7 @@ import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-crear-producto',
@@ -14,20 +15,17 @@ export class CrearProductoComponent {
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
-  private route:ActivatedRoute;
   esEdicion : boolean;
   codigoProducto:number;
   txtBoton : string = "Crear Producto";
 
-  constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,private productoService:ProductoService) {
+  constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,private productoService:ProductoService,private route:ActivatedRoute) {
     this.producto = new ProductoDTO();
     this.codigoProducto =0;
     this.categorias = [];
-    
-    this.route = new ActivatedRoute();
     this.esEdicion =false;
     
-    this.route.params.subscribe(params => { 
+    this.route.params.subscribe(params => {
       this.codigoProducto = params["codigo"]; 
       let objetoProducto = this.productoService.obtener(this.codigoProducto); 
       if(objetoProducto != null){ 
@@ -53,8 +51,6 @@ export class CrearProductoComponent {
   }
   public crearProducto() {
     
-    //cree el producto o lo edite según el caso (haga uso de la variable esEdicion para controlar qué función llamar).
-
     if (this.archivos != null && this.archivos.length > 0) {
       console.log(this.producto);
     } else {
@@ -78,6 +74,7 @@ export class CrearProductoComponent {
     const objeto = this.producto;
     const formData = new FormData();
     formData.append('file', this.archivos[0]);
+
     this.imagenService.subir(formData).subscribe({
     next: data => {
     objeto.imagenes.push( data.respuesta.url );
