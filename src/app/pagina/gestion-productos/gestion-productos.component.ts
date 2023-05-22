@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { SharedService } from 'src/app/servicios/shared.service';
 
 @Component({
   selector: 'app-gestion-productos',
@@ -13,10 +14,15 @@ export class GestionProductosComponent implements OnInit {
   productos: ProductoGetDTO[];
   seleccionados: ProductoGetDTO[];
   alerta!: Alerta;
+  objeto: any;
 
-  constructor(private productoServicio: ProductoService) {
+  
+
+  constructor(private productoServicio: ProductoService, private sharedService:SharedService) {
     this.productos = [];
     this.seleccionados = [];
+    this.objeto = this;
+    this.sharedService.objeto = this.objeto;
   }
 
   ngOnInit(): void {
@@ -55,14 +61,15 @@ export class GestionProductosComponent implements OnInit {
     }
 
     public getProductos(){
-      const objeto = this;
+      
       this.productoServicio.getProductos().subscribe({
         next: data => {
-          objeto.alerta = new Alerta(data.respuesta, "success");
-          console.log(objeto, " este es");
+          this.objeto.alerta = new Alerta(data.respuesta, "success");
+          this.sharedService.updateObjeto(this.objeto);
+          this.productoServicio.listar();
           },
           error: error => {
-          objeto.alerta = new Alerta(error.error.respuesta, "danger");
+            this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
           }
       });
     }

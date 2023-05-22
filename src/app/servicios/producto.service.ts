@@ -4,27 +4,37 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MensajeDTO } from '../modelo/mensaje-dto';
+import { SharedService } from './shared.service';
+import { ProductoDTO } from '../modelo/ProductoDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductoService {
+  objeto: any;
+  miProducto: ProductoDTO;
 
   private apiUrl = "http://localhost:8080/api/producto/listar";
 
   productos: ProductoGetDTO[];
 
-  constructor(private router: Router, private http:HttpClient) {
+  constructor(private router: Router, private http:HttpClient, private sharedService:SharedService) {
+    this.miProducto= new ProductoDTO();
+
+    this.sharedService.objeto$.subscribe(objeto => {
+      this.objeto = objeto;
+     
+
+       for (let i = 0; i < this.objeto.alerta.mensaje.length; i++) {
+        this.miProducto = this.objeto.alerta.mensaje[i];
+         this.productos.push(new ProductoGetDTO(this.objeto.alerta.mensaje[i].codigo, this.miProducto.nombre, this.miProducto.descripcion, this.miProducto.precio, this.miProducto.unidades, this.miProducto.imagenes, this.miProducto.categorias))
+          }
+
+      
+      // Realiza cualquier otra acción necesaria cuando se actualice el objeto
+    });
     this.productos = [];
-    this.productos.push(new ProductoGetDTO(1, "Televisor LG 4K", "Descripcion 1", 3500000, 2, ["https://picsum.photos/450/225", "https://picsum.photos/450/225"], ["TECNOLOGIA"]));
-    this.productos.push(new ProductoGetDTO(2, "Tenis Nike", "Descripcion 2", 650000, 4, ["https://picsum.photos/450/225"], ["ROPA", "DEPORTE"]));
-    this.productos.push(new ProductoGetDTO(3, "Mesa de centro", "Descripcion 3", 2500000, 1, ["https://picsum.photos/450/225"], ["HOGAR"]));
-    this.productos.push(new ProductoGetDTO(4, "Portátil Dell", "Descripcion 4", 5500000, 5, ["https://picsum.photos/450/225"], ["TECNOLOGIA"]));
-    this.productos.push(new ProductoGetDTO(5, "Vestido de noche", "Descripcion 5", 850000, 3, ["https://picsum.photos/450/225"], ["ROPA"]));
-    this.productos.push(new ProductoGetDTO(6, "Zapatos de cuero", "Descripcion 6", 1200000, 2, ["https://picsum.photos/450/225"], ["ROPA", "DEPORTE"]));
-    this.productos.push(new ProductoGetDTO(7, "Aspiradora de mano", "Descripcion 7", 400000, 4, ["https://picsum.photos/450/225"], ["HOGAR"]));
-    this.productos.push(new ProductoGetDTO(8, "Smartwatch Samsung", "Descripcion 8", 1800000, 3, ["https://picsum.photos/450/225"], ["TECNOLOGIA"]));
   }
   
   public listar(): ProductoGetDTO[] {
@@ -36,6 +46,8 @@ export class ProductoService {
   }
 
   getProductos(): Observable<MensajeDTO> {
+   // console.log("entre aqui",this.http.get<MensajeDTO>(this.apiUrl) );
+    
     return this.http.get<MensajeDTO>(this.apiUrl);
   }
   

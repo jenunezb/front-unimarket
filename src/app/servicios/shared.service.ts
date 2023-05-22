@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { UsuarioDTO } from '../modelo/usuario-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+  objeto: any;
   usuario: UsuarioDTO | null = null;
   usuarioSubject: BehaviorSubject<UsuarioDTO | null> = new BehaviorSubject<UsuarioDTO | null>(null);
 
+  private objetoSubject = new Subject<any>();
+  objeto$ = this.objetoSubject.asObservable();
+
+  updateObjeto(objeto: any) {
+    this.objetoSubject.next(objeto);
+  }
 
   private variableSubject = new BehaviorSubject<string>('');
   public variable$ = this.variableSubject.asObservable();
