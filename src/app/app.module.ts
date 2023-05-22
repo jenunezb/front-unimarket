@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,26 +14,23 @@ import { GestionProductosComponent } from './pagina/gestion-productos/gestion-pr
 import { DetalleProductoComponent } from './pagina/detalle-producto/detalle-producto.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
+import { SharedService } from './servicios/shared.service';
+
 @NgModule({
-declarations: [
-AppComponent,
-InicioComponent,
-LoginComponent,
-RegistroComponent,
-CrearProductoComponent,
-BusquedaComponent,
-GestionProductosComponent,
-DetalleProductoComponent,
-CarritoComponent,
-AlertaComponent
-],
-imports: [
-HttpClientModule,
-BrowserModule,
-AppRoutingModule,
-FormsModule
-],
-providers: [],
-bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    InicioComponent,
+    LoginComponent,
+    RegistroComponent,
+    CrearProductoComponent,
+    BusquedaComponent,
+    GestionProductosComponent,
+    DetalleProductoComponent,
+    CarritoComponent,
+    AlertaComponent,
+  ],
+  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
+  providers: [SharedService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

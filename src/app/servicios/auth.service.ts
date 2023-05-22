@@ -18,4 +18,8 @@ export class AuthService {
   public login(sesion: SesionDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/auth/login`, sesion);
   }
+
+  public obtenerUsuarioLogueado(): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${this.authURL}/auth/usuario`);
+  }
 }

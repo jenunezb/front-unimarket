@@ -9,15 +9,15 @@ import { GestionProductosComponent } from './pagina/gestion-productos/gestion-pr
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 
 const routes: Routes = [
-    { path: "", component: InicioComponent },
-    { path: "login", component: LoginComponent },
-    { path: "registro", component: RegistroComponent },
-    { path: "crear-producto", component: CrearProductoComponent },
-    { path: "busqueda/:texto", component: BusquedaComponent },
-    { path: "gestion-productos", component: GestionProductosComponent},
+    { path: "", component: InicioComponent},
+    { path: "login", component: LoginComponent},
+    { path: "registro", component: RegistroComponent},
+    { path: "crear-producto", component: CrearProductoComponent},
+    { path: "busqueda/:texto", component: BusquedaComponent},
+    { path: "gestion-productos", component: GestionProductosComponent },
     { path: "editar-producto/:codigo", component: CrearProductoComponent },
-    { path: "carrito", component: CarritoComponent},
-    { path: "editar-producto/:codigo", component: CrearProductoComponent },
+    { path: "carrito", component: CarritoComponent },
+    { path: "editar-producto/:codigo", component: CrearProductoComponent},
     { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 @NgModule({

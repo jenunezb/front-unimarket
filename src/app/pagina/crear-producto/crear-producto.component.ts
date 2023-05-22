@@ -23,19 +23,19 @@ export class CrearProductoComponent {
     this.producto = new ProductoDTO();
     this.codigoProducto =0;
     this.categorias = [];
-    
+
     this.route = new ActivatedRoute();
     this.esEdicion =false;
-    
-    this.route.params.subscribe(params => { 
-      this.codigoProducto = params["codigo"]; 
-      let objetoProducto = this.productoService.obtener(this.codigoProducto); 
-      if(objetoProducto != null){ 
-      this.producto = objetoProducto; 
-      this.txtBoton = 'Editar Producto'; 
-      } 
+
+    this.route.params.subscribe(params => {
+      this.codigoProducto = params["codigo"];
+      let objetoProducto = this.productoService.obtener(this.codigoProducto);
+      if(objetoProducto != null){
+      this.producto = objetoProducto;
+      this.txtBoton = 'Editar Producto';
+      }
       });
-    
+
   }
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class CrearProductoComponent {
     }
   }
   public crearProducto() {
-    
+
     //cree el producto o lo edite según el caso (haga uso de la variable esEdicion para controlar qué función llamar).
 
     if (this.archivos != null && this.archivos.length > 0) {
@@ -72,7 +72,7 @@ export class CrearProductoComponent {
     }
     });
   }
-    
+
   public subirImagenes() {
     if (this.archivos != null && this.archivos.length > 0) {
     const objeto = this.producto;

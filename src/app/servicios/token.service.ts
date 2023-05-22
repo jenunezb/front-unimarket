@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Buffer } from "buffer";
+import { SharedService } from './shared.service';
+import { UsuarioDTO } from '../modelo/usuario-dto';
 
 const TOKEN_KEY = "AuthToken";
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-  constructor(private router: Router) { }
+  usuario: UsuarioDTO | null = null;
+
+
+  constructor(private router: Router,private sharedService: SharedService) {}
+
+
 
   public setToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
@@ -27,12 +34,32 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
-    this.router.navigate(["/"]);
+    const tokenValue = this.getToken();
+
+    if(tokenValue!== null ){
+      this.actualizarVariable(tokenValue);
+      this.usuario = this.sharedService.getUsuario();
+      const emailValue = this.usuario?.email;
+      console.log(emailValue);
+
+      if(emailValue !== undefined){
+        sessionStorage.setItem('email', emailValue);
+        this.sharedService.cambiarNombreBoton(emailValue);
+      }
+
+      this.router.navigate(["/"]);
+    }
   }
 
   public logout() {
     window.sessionStorage.clear();
-    this.router.navigate(["/login"]);
+    const tokenValue = this.getToken();
+
+    if (tokenValue !== null) {
+      this.actualizarVariable(tokenValue);
+    }
+
+    this.router.navigateByUrl('/');
   }
 
   private decodePayload(token: string): any {
@@ -41,4 +68,11 @@ export class TokenService {
     const values = JSON.parse(payloadDecoded);
     return values;
     }
+
+
+    public actualizarVariable(nuevoValor: string) {
+      this.sharedService.actualizarVariable(nuevoValor);
+    }
+
+
 }

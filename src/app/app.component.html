@@ -9,17 +9,26 @@
       </a>
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a routerLink="" class="nav-link px-2 text-secondary">Inicio</a></li>
-        <li><a routerLink="/gestion-productos" class="nav-link px-2 text-white">Mis productos</a></li>
-        <li><a routerLink="" class="nav-link px-2 text-white">Mis compras</a></li>
+         <div *ngIf="mostrarComponentes">
+          <li><a routerLink="/gestion-productos" class="nav-link px-2 text-white">Mis productos</a></li>
+        </div>
+        <div *ngIf="mostrarComponentes">
+          <li><a routerLink="" class="nav-link px-2 text-white">Mis compras</a></li>
+       </div>
+       <div *ngIf="mostrarComponentes">
         <li><a routerLink="/carrito" class="nav-link px-2 text-white">Carrito</a></li>
+      </div>
       </ul>
       <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" (submit)="iraBusqueda(textoBusqueda.value)">
         <input #textoBusqueda type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
           aria-label="Search">
       </form>
       <div class="text-end">
-        <button type="button" routerLink="/login" class="btn btn-outline-light me-2">Iniciar sesión</button>
-        <button type="button" routerLink="/registro" class="btn btn-warning">Registrarse</button>
+        <button *ngIf="mostrarBoton" type="button" routerLink="/login" class="btn btn-outline-light me-2">Iniciar Sesión</button>
+        <label class="btn btn-outline-light me-2" *ngIf="mostrarLabel" [innerHTML]="nombreBoton"></label>
+        <button *ngIf="mostrarBoton" type="button" routerLink="/registro" class="btn btn-warning">Registrarse</button>
+        <button *ngIf="!mostrarBoton" type="button" class="btn btn-warning" (click)="logout()">Cerrar Sesión</button>
+
       </div>
     </div>
   </div>
