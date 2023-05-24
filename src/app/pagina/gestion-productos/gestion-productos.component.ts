@@ -17,7 +17,6 @@ export class GestionProductosComponent implements OnInit {
   objeto: any;
 
   
-
   constructor(private productoServicio: ProductoService, private sharedService:SharedService) {
     this.productos = [];
     this.seleccionados = [];

@@ -51,16 +51,19 @@ export class TokenService {
     }
   }
 
-  public logout() {
-    window.sessionStorage.clear();
-    const tokenValue = this.getToken();
-
-    if (tokenValue !== null) {
-      this.actualizarVariable(tokenValue);
+  public getEmail():string{
+    const token = this.getToken();
+    if(token){
+    const values = this.decodePayload(token);
+    return values.sub;
     }
-
-    this.router.navigateByUrl('/');
-  }
+    return "";
+    }
+    
+    public logout() {
+    window.sessionStorage.clear();
+    this.router.navigate(["/"]);
+    }
 
   private decodePayload(token: string): any {
     const payload = token!.split(".")[1];

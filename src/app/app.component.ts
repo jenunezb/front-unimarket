@@ -10,36 +10,21 @@ import { map, filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'unimarket';
-  mostrarComponentes: boolean = false;
-  public variable: string='';
-  nombreBoton: string = '';
-  mostrarBoton: boolean = true;
-  mostrarLabel: boolean =false;
 
+export class AppComponent {
+  
+  title = 'Unimarket';
+  isLogged = false;
+  email:string = "";
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private sharedService: SharedService, private tokenService: TokenService) {}
 
-  ngOnInit() {
-    this.sharedService.variable$.pipe(
-      filter(valor => valor !== null),
-      map(() => sessionStorage.getItem('AuthToken'))
-    ).subscribe(tokenValue => {
-      if (tokenValue) {
-        this.mostrarComponentes = true;
-        this.mostrarBoton = false;
-        this.mostrarLabel=true;
-      }
-    });
-
-    this.sharedService.nombreBoton$.subscribe(valor => {
-      const nombreBoton = sessionStorage.getItem('email');
-      if (nombreBoton) {
-        this.nombreBoton = nombreBoton;
-      }
-    });
-  }
+  ngOnInit(): void {
+    this.isLogged = this.tokenService.isLogged();
+    if(this.isLogged){
+    this.email = this.tokenService.getEmail();
+    }
+    }
 
 
 
@@ -48,12 +33,9 @@ export class AppComponent {
       this.router.navigate(['/busqueda', valor]);
     }
   }
-
-  public logout() {
+  
+  public logout(){
     this.tokenService.logout();
-    this.mostrarComponentes = false;
-    this.mostrarBoton = true;
-    this.mostrarLabel = false;
-  }
+    }
 
 }

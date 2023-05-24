@@ -15,26 +15,26 @@ export class CrearProductoComponent {
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
-  esEdicion : boolean;
-  codigoProducto:number;
-  txtBoton : string = "Crear Producto";
+  esEdicion: boolean;
+  codigoProducto: number;
+  txtBoton: string = "Crear Producto";
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
-    private productoService:ProductoService,private route:ActivatedRoute, private router:Router) {
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router) {
     this.producto = new ProductoDTO();
-    this.codigoProducto =0;
+    this.codigoProducto = 0;
     this.categorias = [];
-    this.esEdicion =false;
-    
+    this.esEdicion = false;
+
     this.route.params.subscribe(params => {
-      this.codigoProducto = params["codigo"]; 
-      let objetoProducto = this.productoService.obtener(this.codigoProducto); 
-      if(objetoProducto != null){ 
-      this.producto = objetoProducto; 
-      this.txtBoton = 'Editar Producto'; 
-      } 
-      });
-    
+      this.codigoProducto = params["codigo"];
+      let objetoProducto = this.productoService.obtener(this.codigoProducto);
+      if (objetoProducto != null) {
+        this.producto = objetoProducto;
+        this.txtBoton = 'Editar Producto';
+      }
+    });
+
   }
 
   ngOnInit(): void {
@@ -51,7 +51,7 @@ export class CrearProductoComponent {
     }
   }
   public crearProducto() {
-    
+
     if (this.archivos != null && this.archivos.length > 0) {
       this.router.navigate(["/gestion-productos"]);
       console.log(this.producto);
@@ -60,34 +60,34 @@ export class CrearProductoComponent {
     }
   }
 
-  private cargarCategorias(){
+  private cargarCategorias() {
     this.categoriaService.listar().subscribe({
-    next: data => {
-    this.categorias = data.respuesta;
-    },
-    error: error => {
-    console.log(error.error);
-    }
+      next: data => {
+        this.categorias = data.respuesta;
+      },
+      error: error => {
+        console.log(error.error);
+      }
     });
   }
-    
+
   public subirImagenes() {
     if (this.archivos != null && this.archivos.length > 0) {
-    const objeto = this.producto;
-    const formData = new FormData();
-    formData.append('file', this.archivos[0]);
+      const objeto = this.producto;
+      const formData = new FormData();
+      formData.append('file', this.archivos[0]);
 
-    this.imagenService.subir(formData).subscribe({
-    next: data => {
-    objeto.imagenes.push( data.respuesta.url );
-    },
-    error: error => {
-    console.log(error.error);
-    }
-    });
+      this.imagenService.subir(formData).subscribe({
+        next: data => {
+          objeto.imagenes.push(data.respuesta.url);
+        },
+        error: error => {
+          console.log(error.error);
+        }
+      });
     } else {
-    console.log('Debe seleccionar al menos una imagen y subirla');
+      console.log('Debe seleccionar al menos una imagen y subirla');
     }
-    }
+  }
 }
 
