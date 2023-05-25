@@ -16,6 +16,7 @@ export class AppComponent {
   title = 'Unimarket';
   isLogged = false;
   email:string = "";
+  mostrarProductos: boolean = false;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private sharedService: SharedService, private tokenService: TokenService) {}
 
