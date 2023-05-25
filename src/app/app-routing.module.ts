@@ -1,4 +1,5 @@
 import { Component, NgModule } from '@angular/core';
+import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './pagina/inicio/inicio.component';
 import { LoginComponent } from './pagina/login/login.component';
@@ -8,7 +9,6 @@ import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { LoginGuard } from './guards/permiso.service';
-import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
 
 const routes: Routes = [
     { path: "", component: InicioComponent},

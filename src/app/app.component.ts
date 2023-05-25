@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { SharedService } from './servicios/shared.service';
 import { TokenService } from './servicios/token.service';
-import { map, filter } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-root',
@@ -26,8 +24,6 @@ export class AppComponent {
     this.email = this.tokenService.getEmail();
     }
     }
-
-
 
   public iraBusqueda(valor: string) {
     if (valor) {
