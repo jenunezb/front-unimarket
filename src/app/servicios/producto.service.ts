@@ -53,5 +53,9 @@ export class ProductoService {
   public agregarProducto(producto: ProductoDTO): Observable<MensajeDTO>{
     return this.http.post<MensajeDTO>(`${this.apiUrl}/crear`, producto );
   }
+
+  public eliminarProducto(codigoProducto: number): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.apiUrl}/${codigoProducto}`);
+  }
   
 }

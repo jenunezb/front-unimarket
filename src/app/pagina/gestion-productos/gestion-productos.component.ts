@@ -16,7 +16,6 @@ export class GestionProductosComponent implements OnInit {
   alerta!: Alerta;
   objeto: any;
 
-  
   constructor(private productoServicio: ProductoService, private sharedService:SharedService) {
     this.productos = [];
     this.seleccionados = [];
@@ -52,9 +51,10 @@ export class GestionProductosComponent implements OnInit {
   }
 
   public borrarProductos(){ 
-    this.seleccionados.forEach(e => { 
-    this.productos = this.productos.filter(i => i != e); 
-    }); 
+    this.seleccionados.forEach(productoSeleccionado => { 
+      this.productoServicio.eliminarProducto(productoSeleccionado.codigo).subscribe();
+      this.productos = this.productos.filter(i => i != productoSeleccionado);
+    });
     this.seleccionados = []; 
     this.actualizarMensaje(); 
     }

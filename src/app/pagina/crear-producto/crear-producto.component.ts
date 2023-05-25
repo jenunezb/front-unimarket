@@ -65,13 +65,13 @@ export class CrearProductoComponent {
             objeto.alerta = new Alerta(error.error.respuesta, "danger");
         }
       });
-      
-      //this.router.navigate(["/gestion-productos"]);
+      this.router.navigate(["/gestion-productos"]);
       console.log(this.producto);
     } else {
       console.log('Debe seleccionar al menos una imagen');
     }
   }
+
 
   private cargarCategorias() {
     this.categoriaService.listar().subscribe({
@@ -92,6 +92,7 @@ export class CrearProductoComponent {
 
       this.imagenService.subir(formData).subscribe({
         next: data => {
+          console.log("imagen subida")
           objeto.imagenes.push(data.respuesta.url);
         },
         error: error => {
@@ -102,5 +103,7 @@ export class CrearProductoComponent {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
   }
+
+
 }
 
