@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Buffer } from "buffer";
 import { SharedService } from './shared.service';
 import { UsuarioDTO } from '../modelo/usuario-dto';
+import { Observable } from 'rxjs';
 
 const TOKEN_KEY = "AuthToken";
 @Injectable({
@@ -45,11 +46,11 @@ export class TokenService {
       if(emailValue !== undefined){
         sessionStorage.setItem('email', emailValue);
         this.sharedService.cambiarNombreBoton(emailValue);
+        window.location.href="http://localhost:4200/";
       }
 
-      this.router.navigate(["/"]);
     }
-  }
+    }
 
   public getEmail():string{
     const token = this.getToken();
@@ -61,8 +62,9 @@ export class TokenService {
     }
     
     public logout() {
-    window.sessionStorage.clear();
-    this.router.navigate(["/"]);
+      this.sharedService.cambiarNombreBoton("Login");
+    sessionStorage.clear();
+    window.location.href="http://localhost:4200/";
     }
 
   private decodePayload(token: string): any {
