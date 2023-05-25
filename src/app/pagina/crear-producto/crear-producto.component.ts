@@ -5,6 +5,7 @@ import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Observable } from 'rxjs';
+import { Alerta } from 'src/app/modelo/alerta';
 
 @Component({
   selector: 'app-crear-producto',
@@ -12,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./crear-producto.component.css']
 })
 export class CrearProductoComponent {
+  alerta!: Alerta;
   archivos!: FileList;
   categorias: string[];
   producto: ProductoDTO;
@@ -50,10 +52,21 @@ export class CrearProductoComponent {
       this.archivos = event.target.files;
     }
   }
-  public crearProducto() {
 
+  public crearProducto() {
+    console.log(this.producto);
+    const objeto = this;
     if (this.archivos != null && this.archivos.length > 0) {
-      this.router.navigate(["/gestion-productos"]);
+        this.productoService.agregarProducto(this.producto).subscribe({
+          next: data => {
+            objeto.alerta = new Alerta(data.respuesta, "success");
+          },
+          error: error => {
+            objeto.alerta = new Alerta(error.error.respuesta, "danger");
+        }
+      });
+      
+      //this.router.navigate(["/gestion-productos"]);
       console.log(this.producto);
     } else {
       console.log('Debe seleccionar al menos una imagen');
@@ -75,7 +88,7 @@ export class CrearProductoComponent {
     if (this.archivos != null && this.archivos.length > 0) {
       const objeto = this.producto;
       const formData = new FormData();
-      formData.append('file', this.archivos[0]);
+      formData.append('multipartFile', this.archivos[0]);
 
       this.imagenService.subir(formData).subscribe({
         next: data => {

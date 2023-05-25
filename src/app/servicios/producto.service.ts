@@ -15,7 +15,7 @@ export class ProductoService {
   objeto: any;
   miProducto: ProductoDTO;
 
-  private apiUrl = "http://localhost:8080/api/producto/listar";
+  private apiUrl = "http://localhost:8080/api/producto";
 
   productos: ProductoGetDTO[];
 
@@ -36,8 +36,6 @@ export class ProductoService {
     });
     
   }
-
-  
   
   public listar(): ProductoGetDTO[] {
     return this.productos;
@@ -49,7 +47,11 @@ export class ProductoService {
 
   getProductos(): Observable<MensajeDTO> {
    // console.log("entre aqui",this.http.get<MensajeDTO>(this.apiUrl) );
-    return this.http.get<MensajeDTO>(this.apiUrl);
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listar`);
+  }
+
+  public agregarProducto(producto: ProductoDTO): Observable<MensajeDTO>{
+    return this.http.post<MensajeDTO>(`${this.apiUrl}/crear`, producto );
   }
   
 }
