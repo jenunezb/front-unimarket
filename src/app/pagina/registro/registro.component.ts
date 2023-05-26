@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Alerta } from 'src/app/modelo/alerta';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,8 +12,19 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class RegistroComponent {
   alerta!: Alerta;
   usuario: UsuarioDTO;
-  constructor(private authService: AuthService) {
+  ciudades: any[] = [];
+
+  constructor(private authService: AuthService,private usuarioService: UsuarioService) {
     this.usuario = new UsuarioDTO();
+    this.usuarioService.ciudades().subscribe(
+      respuesta => {
+        this.ciudades = respuesta;
+        console.log(respuesta);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   public registrar() {

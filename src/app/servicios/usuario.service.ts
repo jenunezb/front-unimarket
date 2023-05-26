@@ -8,7 +8,7 @@ import { MensajeDTO } from '../modelo/mensaje-dto';
 })
 export class UsuarioService {
 
-  private userUrl = "http://localhost:8080/api/usuarios";
+  private userUrl = "http://localhost:8080/api/usuario";
 
   constructor(private http: HttpClient) { }
 
@@ -23,5 +23,10 @@ export class UsuarioService {
   public actualizar(codigo: number, usuario: UsuarioDTO): Observable<MensajeDTO> {
     return this.http.put<MensajeDTO>(`${this.userUrl}/${codigo}`, usuario);
   }
+
+  public ciudades():Observable<any> {
+    return this.http.get<MensajeDTO>(`${this.userUrl}/ciudades`);
+  }
+
 
 }
