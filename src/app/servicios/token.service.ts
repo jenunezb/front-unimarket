@@ -60,7 +60,7 @@ export class TokenService {
     }
     return "";
     }
-    
+
     public logout() {
       this.sharedService.cambiarNombreBoton("Login");
     sessionStorage.clear();
