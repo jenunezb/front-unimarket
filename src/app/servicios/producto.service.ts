@@ -30,7 +30,7 @@ export class ProductoService {
       this.productos.splice(0, this.productos.length);
        for (let i = 0; i < this.objeto.alerta.mensaje.length; i++) {
         this.miProducto = this.objeto.alerta.mensaje[i];
-         this.productos.push(new ProductoGetDTO(this.objeto.alerta.mensaje[i].codigo, this.miProducto.nombre, this.miProducto.descripcion, this.miProducto.precio, this.miProducto.unidades, this.miProducto.imagenes, this.miProducto.categorias))
+         this.productos.push(new ProductoGetDTO(this.objeto.alerta.mensaje[i].codigo, this.miProducto.nombre, this.miProducto.descripcion, this.miProducto.precio, this.miProducto.unidades, this.miProducto.imagenes, this.miProducto.categorias, this.miProducto.codigoVendedor))
           }
 
     });

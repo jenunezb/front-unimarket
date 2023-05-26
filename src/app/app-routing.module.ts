@@ -23,7 +23,6 @@ const routes: Routes = [
     { path: "listar-todos-productos", component: ListarTodosProductosComponent},
     { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
-    { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

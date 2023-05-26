@@ -68,10 +68,11 @@ export class CrearProductoComponent {
       this.router.navigate(["/gestion-productos"]);
       console.log(this.producto);
     } else {
-      console.log('Debe seleccionar al menos una imagen');
+      objeto.mensajeAlerta = 'Debe seleccionar al menos una imagen';
     }
   }
 
+  public mensajeAlerta: string="";
 
   private cargarCategorias() {
     this.categoriaService.listar().subscribe({
@@ -103,7 +104,6 @@ export class CrearProductoComponent {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
   }
-
 
 }
 
