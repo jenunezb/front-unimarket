@@ -16,6 +16,7 @@ import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 import { SharedService } from './servicios/shared.service';
 import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
+import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/l
     CarritoComponent,
     AlertaComponent,
     ListarTodosProductosComponent,
+    DetallePComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [SharedService],

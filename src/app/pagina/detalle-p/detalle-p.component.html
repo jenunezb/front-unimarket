@@ -1,0 +1,21 @@
+<div>
+    <h2 ng-bind="nombre"></h2>
+    <p><strong>Descripción:</strong> ng-bind="descripcion"</p>
+    <p><strong>Precio:</strong> $ng-bind="precio"</p>
+    <p><strong>Unidades:</strong> ng-bind="unidades"</p>
+  
+    <div>
+      <h4>Imágenes:</h4>
+      <div ng-repeat="imagen in imagenes">
+        <img ng-src="imagen" alt="Imagen de producto">
+      </div>
+    </div>
+  
+    <p><strong>Categorías:</strong></p>
+    <ul>
+      <li ng-repeat="categoria in categorias" ng-bind="categoria"></li>
+    </ul>
+  
+    <p><strong>Código de Vendedor:</strong> ng-bind="codigoVendedor"</p>
+  </div>
+  

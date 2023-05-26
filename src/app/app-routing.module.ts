@@ -8,6 +8,7 @@ import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.c
 import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
+import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { LoginGuard } from './guards/permiso.service';
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: "editar-producto/:codigo", component: CrearProductoComponent},
     { path: "listar-todos-productos", component: ListarTodosProductosComponent},
     { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+    { path: "detalle", component: DetallePComponent},
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
 ];
 @NgModule({
