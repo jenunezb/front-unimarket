@@ -6,6 +6,7 @@ import { UsuarioDTO } from '../modelo/usuario-dto';
   providedIn: 'root'
 })
 export class SharedService {
+  codigoProducto: number | undefined;
   objeto: any;
   usuario: UsuarioDTO | null = null;
   usuarioSubject: BehaviorSubject<UsuarioDTO | null> = new BehaviorSubject<UsuarioDTO | null>(null);

@@ -4,7 +4,6 @@ import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
-import { Observable } from 'rxjs';
 import { Alerta } from 'src/app/modelo/alerta';
 
 @Component({

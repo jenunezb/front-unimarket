@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { SharedService } from 'src/app/servicios/shared.service';
 
 @Component({
   selector: 'app-detalle-p',
@@ -12,24 +13,25 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 export class DetallePComponent implements OnInit{
   
 alerta!:Alerta;
-codigoProducto:any;
-producto: any;
+codigo:any;
+producto: any={};
 route:any;
 
-  constructor(private productoServicio: ProductoService, route: ActivatedRoute){
+  constructor(private productoServicio: ProductoService, route: ActivatedRoute, private sharedData: SharedService){
     this.producto=this.producto;
     
   }
 
   ngOnInit(): void {
-    // this.obtenerProducto()
+    this.codigo = this.sharedData.codigoProducto;
+    this.obtenerProducto();
   }
 
   public obtenerProducto(){
-    this.productoServicio.obtenerProducto(this.codigoProducto).subscribe({
+    this.productoServicio.obtenerProducto(this.codigo).subscribe({
       next: data => {
         this.alerta = new Alerta(data.respuesta, "success");
-        this.producto=data;
+        this.producto=data.respuesta;
         console.log(data.respuesta);
         },
         error: error => {

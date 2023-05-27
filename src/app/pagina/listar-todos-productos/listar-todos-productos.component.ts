@@ -3,8 +3,6 @@ import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
-import { Router } from '@angular/router';
-import { DetallePComponent } from '../detalle-p/detalle-p.component';
 
 @Component({
   selector: 'app-listar-todos-productos',
@@ -40,7 +38,7 @@ export class ListarTodosProductosComponent implements OnInit {
   }
 
   guardarCodigoProducto(codigo: number){
+    this.sharedService.codigoProducto = codigo;
     console.log(codigo);
-
   }
 }

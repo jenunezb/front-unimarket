@@ -1,21 +1,20 @@
-<div class ="categorias-container">
-    <p><strong>Nombre:</strong> nombre</p>
-    <p><strong>Descripción:</strong> ng-bind="descripcion"</p>
-    <p><strong>Precio:</strong> $ng-bind="precio"</p>
-    <p><strong>Unidades:</strong> ng-bind="unidades"</p>
-  
-    <div>
-      <h4>Imágenes:</h4>
-      <div ng-repeat="imagen in imagenes">
-        <img ng-src="imagen" alt="Imagen de producto">
-      </div>
-    </div>
-  
-    <p><strong>Categorías:</strong></p>
-    <ul>
-      <li ng-repeat="categoria in categorias" ng-bind="categoria"></li>
-    </ul>
-  
-    <p><strong>Código de Vendedor:</strong> ng-bind="codigoVendedor"</p>
+<link rel="stylesheet" href="detalle-p.component.css">
+
+<div class="detalle-producto-container">
+  <div class="producto-imagen">
+    <img src="{{producto.imagenes[0]}}" alt="{{producto.nombre}}" class="product-image">
   </div>
-  
+  <div class="producto-info">
+    <h2 class="producto-nombre">{{producto.nombre}}</h2>
+    <p class="producto-descripcion">{{producto.descripcion}}</p>
+    <div class="producto-detalle">
+      <p><strong>Precio:</strong> ${{producto.precio}}</p>
+      <p><strong>Unidades:</strong> {{producto.unidades}}</p>
+      <p><strong>Categoría:</strong></p>
+      <ul>
+        <li *ngFor="let categoria of producto.categorias">{{categoria}}</li>
+      </ul>
+    </div>
+    <button class="buy-button">Comprar</button>
+  </div>
+</div>
