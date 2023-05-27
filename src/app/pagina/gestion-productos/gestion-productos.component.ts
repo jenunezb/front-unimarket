@@ -25,7 +25,7 @@ export class GestionProductosComponent implements OnInit {
 
   ngOnInit(): void {
     //this.productos = this.productoServicio.listar();
-    this.getProductos();
+    this.getProductosVendedor();
   }
 
   public seleccionar(producto: ProductoGetDTO, estado: boolean) {
@@ -70,5 +70,20 @@ export class GestionProductosComponent implements OnInit {
             this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
           }
       });
+    }
+
+    public getProductosVendedor(){
+        this.productoServicio.getProductosVendedor(this.sharedService.email).subscribe({
+          next: data => {
+            this.sharedService.updateObjeto(this.objeto);
+            //this.productoServicio.listar();
+            this.productos = data.respuesta;
+            },
+            error: error => {
+              this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
+            }
+        });
+
+    
     }
 }

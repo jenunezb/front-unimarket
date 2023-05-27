@@ -42,6 +42,10 @@ export class ProductoService {
     console.log(cadena);
     return this.http.get<MensajeDTO>(`${this.apiUrl}/busqueda/${cadena}`);
   }
+
+  getProductosVendedor(codigoUsuario: String): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/misproductos/${codigoUsuario}`);
+  }
 }
 
 

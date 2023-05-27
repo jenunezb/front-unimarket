@@ -37,7 +37,7 @@ export class TokenService {
       this.actualizarVariable(tokenValue);
       this.usuario = this.sharedService.getUsuario();
       const emailValue = this.usuario?.email;
-      // console.log(emailValue);
+      this.sharedService.email=emailValue;
       this.sesionService.updateSession(true);
 
 
