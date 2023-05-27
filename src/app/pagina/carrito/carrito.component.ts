@@ -16,11 +16,19 @@ export class CarritoComponent {
     const listaCodigos = this.carritoService.listar();
     if (listaCodigos.length > 0) {
       for (let cod of listaCodigos) {
-        const producto = this.productoService.obtener(cod);
-        if (producto != null) {
-          this.productos.push(new DetalleCompraDTO(producto, 1));
-          this.valorTotal += producto.precio;
-        }
+        this.productoService.obtenerProducto(cod).subscribe({
+          next: data => {
+            const producto = data.respuesta;
+            if (producto != null) {
+              this.productos.push(new DetalleCompraDTO(producto, 1));
+              this.valorTotal += producto.precio;
+            }
+          },
+          error: error => {
+            console.log(error.error);
+          }
+        });
+        
       }
     }
   }

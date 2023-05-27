@@ -30,11 +30,16 @@ export class CrearProductoComponent {
 
     this.route.params.subscribe(params => {
       this.codigoProducto = params["codigo"];
-      let objetoProducto = this.productoService.obtener(this.codigoProducto);
-      if (objetoProducto != null) {
-        this.producto = objetoProducto;
-        this.txtBoton = 'Editar Producto';
-      }
+      this.productoService.obtenerProducto(this.codigoProducto).subscribe({
+        next: data => {
+          const objetoProducto = data.respuesta;
+          if (objetoProducto != null) {
+            this.producto = objetoProducto;
+            this.txtBoton = 'Editar Producto';
+          }
+
+        }
+      });
     });
 
   }

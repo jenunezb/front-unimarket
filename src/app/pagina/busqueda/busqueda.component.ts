@@ -9,12 +9,12 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 })
 export class BusquedaComponent {
   textoBusqueda: string;
-  productos: ProductoGetDTO[];
+  productos: ProductoGetDTO[] = [];
   filtro: ProductoGetDTO[];
 
   constructor(private route: ActivatedRoute, private productoServicio:ProductoService) {
     this.textoBusqueda = "";
-    this.productos = this.productoServicio.listar();
+    //this.productos = this.productoServicio.listar();
     this.filtro = [];
 
     

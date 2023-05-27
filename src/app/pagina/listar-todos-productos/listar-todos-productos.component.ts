@@ -19,7 +19,7 @@ export class ListarTodosProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productos = this.productoServicio.listar();
+    //this.productos = this.productoServicio.listar();
     this.getProductos();
   }
 
@@ -29,7 +29,8 @@ export class ListarTodosProductosComponent implements OnInit {
       next: data => {
         this.objeto.alerta = new Alerta(data.respuesta, "success");
         this.sharedService.updateObjeto(this.objeto);
-        this.productoServicio.listar();
+        //this.productoServicio.listar();
+        this.productos = data.respuesta;
         },
         error: error => {
           this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
