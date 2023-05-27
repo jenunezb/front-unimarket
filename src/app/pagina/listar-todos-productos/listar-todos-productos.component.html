@@ -11,7 +11,7 @@
 
     <div class="products-container">
         <div class="product" *ngFor="let item of productos">
-            <a routerLink="/detalle" class="detalle-producto" (click)="guardarCodigoProducto(item.codigo)">
+            <a routerLink="/detalle-producto/${item.codigo}" class="detalle-producto" (click)="guardarCodigoProducto(item.codigo)">
                 <img src={{item.imagenes[0]}} alt={{item.nombre}}>
             </a>
             <h2 class="product-title">{{item.nombre}}</h2>

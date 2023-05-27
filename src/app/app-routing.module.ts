@@ -10,6 +10,7 @@ import { GestionProductosComponent } from './pagina/gestion-productos/gestion-pr
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { LoginGuard } from './guards/permiso.service';
+import { CompraComponent } from './pagina/compra/compra.component';
 
 const routes: Routes = [
     { path: "", component: InicioComponent},
@@ -25,6 +26,8 @@ const routes: Routes = [
     { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
     { path: "detalle", component: DetallePComponent},
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
+    { path: "compra", component: CompraComponent},
+    { path: "detalle-producto/:texto", component: DetallePComponent},
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

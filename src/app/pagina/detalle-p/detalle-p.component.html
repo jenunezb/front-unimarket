@@ -2,7 +2,7 @@
 
 <div class="detalle-producto-container">
   <div class="producto-imagen">
-    <img src="{{producto.imagenes[0]}}" alt="{{producto.nombre}}" class="product-image">
+    <img img [src]="producto.imagenes[0]" alt="{{producto.nombre}}" class="product-image">
   </div>
   <div class="producto-info">
     <h2 class="producto-nombre">{{producto.nombre}}</h2>
@@ -12,9 +12,9 @@
       <p><strong>Unidades:</strong> {{producto.unidades}}</p>
       <p><strong>Categoría:</strong></p>
       <ul>
-        <li *ngFor="let categoria of producto.categorias">{{categoria}}</li>
+        <!-- <li *ngFor="let categoria of producto.categorias">{{categoria}}</li> -->
       </ul>
     </div>
-    <button class="buy-button">Comprar</button>
+    <button routerLink="/compra" class="buy-button">Comprar</button >
   </div>
 </div>

@@ -11,12 +11,12 @@ import { FormsModule } from '@angular/forms';
 import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.component';
 import { BusquedaComponent } from './pagina/busqueda/busqueda.component';
 import { GestionProductosComponent } from './pagina/gestion-productos/gestion-productos.component';
-import { DetalleProductoComponent } from './pagina/detalle-producto/detalle-producto.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 import { SharedService } from './servicios/shared.service';
 import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
 import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
+import { CompraComponent } from './pagina/compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +27,11 @@ import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
     CrearProductoComponent,
     BusquedaComponent,
     GestionProductosComponent,
-    DetalleProductoComponent,
     CarritoComponent,
     AlertaComponent,
     ListarTodosProductosComponent,
     DetallePComponent,
+    CompraComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [SharedService],

@@ -37,7 +37,7 @@ export class TokenService {
       this.actualizarVariable(tokenValue);
       this.usuario = this.sharedService.getUsuario();
       const emailValue = this.usuario?.email;
-      console.log(emailValue);
+      // console.log(emailValue);
       this.sesionService.updateSession(true);
 
 
@@ -47,11 +47,9 @@ export class TokenService {
         //window.location.href="http://localhost:4200/";
         this.router.navigate(["/"]);
       }
-
     }
     }
 
-      
   public getEmail():string{
     const token = this.getToken();
     if(token){

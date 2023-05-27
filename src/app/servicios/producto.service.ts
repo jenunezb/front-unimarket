@@ -37,4 +37,11 @@ export class ProductoService {
   public categorias():Observable<any> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/categorias`);
   }
+
+  public listarProductosNombre(cadena: String): Observable<MensajeDTO>{
+    console.log(cadena);
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/busqueda/${cadena}`);
+  }
 }
+
+

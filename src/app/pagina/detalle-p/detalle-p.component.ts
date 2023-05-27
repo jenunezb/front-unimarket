@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
@@ -17,7 +17,7 @@ codigo:any;
 producto: any={};
 route:any;
 
-  constructor(private productoServicio: ProductoService, route: ActivatedRoute, private sharedData: SharedService){
+  constructor(private productoServicio: ProductoService,private router: Router, private sharedData: SharedService){
     this.producto=this.producto;
     
   }
@@ -39,5 +39,4 @@ route:any;
         }
     });
   }
-
 }
