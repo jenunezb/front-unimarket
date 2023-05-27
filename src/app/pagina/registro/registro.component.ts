@@ -19,7 +19,6 @@ export class RegistroComponent {
     this.usuarioService.ciudades().subscribe(
       respuesta => {
         this.ciudades = respuesta;
-        console.log(respuesta);
       },
       error => {
         console.error(error);

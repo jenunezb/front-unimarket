@@ -34,4 +34,7 @@ export class ProductoService {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/${codigoProducto}`);
   }
   
+  public categorias():Observable<any> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/categorias`);
+  }
 }

@@ -28,5 +28,4 @@ export class UsuarioService {
     return this.http.get<MensajeDTO>(`${this.userUrl}/ciudades`);
   }
 
-
 }

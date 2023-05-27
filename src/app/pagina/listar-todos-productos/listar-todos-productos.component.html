@@ -11,11 +11,11 @@
 
     <div class="products-container">
         <div class="product" *ngFor="let item of productos">
-            <a routerLink="/detalle" class="detalle-producto">
+            <a routerLink="/detalle" class="detalle-producto" (click)="guardarCodigoProducto(item.codigo)">
                 <img src={{item.imagenes[0]}} alt={{item.nombre}}>
             </a>
             <h2 class="product-title">{{item.nombre}}</h2>
-            <p class="product-description">{{item.descripcion}}</p>
+            <!-- <p class="product-description">{{item.descripcion}}</p> -->
             <p class="product-price">${{item.precio}}</p>
         </div>
     </div>

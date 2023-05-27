@@ -29,11 +29,13 @@
             </div>
         </div>
         <div class="mb-3 row">
-            <label>Categoría: </label>
-            <select name="categorias" [(ngModel)]="producto.categorias" required>
-                <option value="" selected>Seleccione una categoría</option>
-                <option [value]="i+1" *ngFor="let item of categorias; index as i">{{item}}</option>
-            </select>
+            <label class="col-sm-2 col-form-label">Categoria:</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="categoria" [(ngModel)]="producto.categorias" required>
+                    <option value="" selected>Seleccione una categoría</option>
+                    <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+                </select>
+            </div>
         </div>
         <div *ngIf="mensajeAlerta" class="alert alert-danger" role="alert">
             {{ mensajeAlerta }}

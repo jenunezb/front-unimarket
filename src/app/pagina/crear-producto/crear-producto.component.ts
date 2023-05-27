@@ -22,6 +22,7 @@ export class CrearProductoComponent {
   txtBoton: string = "Crear Producto";
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
+    
     private productoService: ProductoService, private route: ActivatedRoute, private router: Router) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
@@ -41,15 +42,18 @@ export class CrearProductoComponent {
         }
       });
     });
-
+    this.productoService.categorias().subscribe(
+      respuesta => {
+        this.categorias = respuesta;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
+  
 
   ngOnInit(): void {
-    this.categorias.push('Tecnología');
-    this.categorias.push('Hogar');
-    this.categorias.push('Deportes');
-    this.categorias.push('Moda');
-    this.categorias.push('Mascotas');
   }
 
   onFileChange(event: any) {
@@ -80,9 +84,10 @@ export class CrearProductoComponent {
   public mensajeAlerta: string="";
 
   private cargarCategorias() {
-    this.categoriaService.listar().subscribe({
+    this.productoService.categorias().subscribe({
       next: data => {
         this.categorias = data.respuesta;
+        console.log(data);
       },
       error: error => {
         console.log(error.error);

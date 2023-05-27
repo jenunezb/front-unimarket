@@ -3,6 +3,8 @@ import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
+import { Router } from '@angular/router';
+import { DetallePComponent } from '../detalle-p/detalle-p.component';
 
 @Component({
   selector: 'app-listar-todos-productos',
@@ -13,13 +15,13 @@ export class ListarTodosProductosComponent implements OnInit {
   productos: ProductoGetDTO[];
   objeto: any;
 
-  constructor(private productoServicio: ProductoService,  private sharedService:SharedService){
+  constructor(private productoServicio: ProductoService,  
+    private sharedService:SharedService){
     this.productos = [];
     this.objeto = this;
   }
 
   ngOnInit(): void {
-    //this.productos = this.productoServicio.listar();
     this.getProductos();
   }
 
@@ -29,7 +31,6 @@ export class ListarTodosProductosComponent implements OnInit {
       next: data => {
         this.objeto.alerta = new Alerta(data.respuesta, "success");
         this.sharedService.updateObjeto(this.objeto);
-        //this.productoServicio.listar();
         this.productos = data.respuesta;
         },
         error: error => {
@@ -38,4 +39,8 @@ export class ListarTodosProductosComponent implements OnInit {
     });
   }
 
+  guardarCodigoProducto(codigo: number){
+    console.log(codigo);
+
+  }
 }
