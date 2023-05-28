@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -19,7 +20,7 @@ export class GestionProductosComponent implements OnInit {
   objeto: any;
   email:any;
 
-  constructor(private productoServicio: ProductoService, private sharedService:SharedService, private usuarioServicio: UsuarioService,private token: TokenService) {
+  constructor(private productoServicio: ProductoService, private sharedService:SharedService, private usuarioServicio: UsuarioService,private token: TokenService, private route: Router) {
     this.productos = [];
     this.seleccionados = [];
     this.objeto = this;
@@ -28,6 +29,7 @@ export class GestionProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.token.getEmail());
  this.getProductosVendedor();
   }
 
@@ -76,6 +78,8 @@ export class GestionProductosComponent implements OnInit {
     }
 
     public getProductosVendedor(){
+        console.log(this.token.getEmail());
+      if( this.token.getEmail()!=""){
         this.productoServicio.getProductosVendedor(this.token.getEmail()).subscribe({
           next: data => {
             this.sharedService.updateObjeto(this.objeto);
@@ -85,7 +89,8 @@ export class GestionProductosComponent implements OnInit {
               this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
             }
         });
-
-    
+      }else{
+        this.route.navigate(["/"]);
+      }
     }
 }
