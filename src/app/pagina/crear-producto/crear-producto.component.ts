@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoDTO } from 'src/app/modelo/ProductoDTO';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Alerta } from 'src/app/modelo/alerta';
-import { SharedService } from 'src/app/servicios/shared.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { Token } from '@angular/compiler';
 import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
@@ -15,6 +13,7 @@ import { TokenService } from 'src/app/servicios/token.service';
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.css']
 })
+
 export class CrearProductoComponent {
   alerta!: Alerta;
   archivos!: FileList;

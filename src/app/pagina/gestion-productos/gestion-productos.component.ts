@@ -3,6 +3,8 @@ import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
+import { TokenService } from 'src/app/servicios/token.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-gestion-productos',
@@ -15,17 +17,18 @@ export class GestionProductosComponent implements OnInit {
   seleccionados: ProductoGetDTO[];
   alerta!: Alerta;
   objeto: any;
+  email:any;
 
-  constructor(private productoServicio: ProductoService, private sharedService:SharedService) {
+  constructor(private productoServicio: ProductoService, private sharedService:SharedService, private usuarioServicio: UsuarioService,private token: TokenService) {
     this.productos = [];
     this.seleccionados = [];
     this.objeto = this;
     this.sharedService.objeto = this.objeto;
+    this.email=this.token.getEmail();
   }
 
   ngOnInit(): void {
-    //this.productos = this.productoServicio.listar();
-    this.getProductosVendedor();
+ this.getProductosVendedor();
   }
 
   public seleccionar(producto: ProductoGetDTO, estado: boolean) {
@@ -73,10 +76,9 @@ export class GestionProductosComponent implements OnInit {
     }
 
     public getProductosVendedor(){
-        this.productoServicio.getProductosVendedor(this.sharedService.email).subscribe({
+        this.productoServicio.getProductosVendedor(this.token.getEmail()).subscribe({
           next: data => {
             this.sharedService.updateObjeto(this.objeto);
-            //this.productoServicio.listar();
             this.productos = data.respuesta;
             },
             error: error => {
