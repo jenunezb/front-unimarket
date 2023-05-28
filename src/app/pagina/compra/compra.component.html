@@ -18,10 +18,9 @@
       
       <div class="pickup-info">
         <h3>Elija el medio de pago</h3>
-        <select class="form-control" name="categoria" [(ngModel)]="producto.categorias" required>
-          <option value="" selected>Seleccione una categoría</option>
-          <option *ngFor="" [value]="">Aqui van las categorias</option>
-      </select>
+        <select class="form-control">
+          <option *ngFor="let item of codigo" >{{ item }}</option>
+        </select>
       </div>
     </div>
   
