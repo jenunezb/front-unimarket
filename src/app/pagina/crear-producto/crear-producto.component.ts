@@ -26,8 +26,8 @@ export class CrearProductoComponent {
   codigoUsuario:any;
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
-    
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, 
+
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router,
     private usuarioService: UsuarioService,private token: TokenService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
@@ -59,7 +59,7 @@ if(this.codigoProducto!= undefined){
       }
     );
   }
-  
+
 
   ngOnInit(): void {
 
@@ -86,8 +86,12 @@ if(this.codigoProducto!= undefined){
         this.codigoUsuario = valor.respuesta;
       });
       this.producto.codigoVendedor = this.codigoUsuario;
+      (this.producto.categoria as any) = [this.producto.categoria];
+      console.log(this.producto);
+
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
+
             objeto.alerta = new Alerta(data.respuesta, "success");
           },
           error: error => {
