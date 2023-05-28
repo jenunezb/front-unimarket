@@ -17,6 +17,8 @@ import { SharedService } from './servicios/shared.service';
 import { ListarTodosProductosComponent } from './pagina/listar-todos-productos/listar-todos-productos.component';
 import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { CompraComponent } from './pagina/compra/compra.component';
+import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
+import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { CompraComponent } from './pagina/compra/compra.component';
     ListarTodosProductosComponent,
     DetallePComponent,
     CompraComponent,
+    ListaUsuariosComponent,
+    ListaProductosComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [SharedService],

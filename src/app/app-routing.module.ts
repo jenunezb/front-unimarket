@@ -11,6 +11,9 @@ import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { LoginGuard } from './guards/permiso.service';
 import { CompraComponent } from './pagina/compra/compra.component';
+import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
+import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
+
 
 const routes: Routes = [
     { path: "", component: InicioComponent},
@@ -28,6 +31,8 @@ const routes: Routes = [
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
     { path: "compra", component: CompraComponent},
     { path: "detalle-producto/:texto", component: DetallePComponent},
+    { path: "lista-usuarios", component: ListaUsuariosComponent},
+    { path: "lista-productos", component: ListaProductosComponent},
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
