@@ -1,26 +1,27 @@
 <div class="container">
-  <!-- <div class="product" *ngFor="let item of productos">  -->
 
     <div class="column">
       <h1>Detalle de Compra</h1>
   
       <div class="delivery-method">
-        <h3>¿Cómo quieres recibir o retirar tu compra?</h3>
+        <h3>Nombre de quien recibe</h3>
         <div class="address-section">
-          <p>Domicilio</p>
-          <p>Manzana D # N 1-SN</p>
-          <p>Villa Hermosa - Armenia, Quindio</p>
-          <p><a class="edit-link" href="#">Editar o elegir otro</a></p>
+          <p>{{usuario?.nombre}}</p>
+          <h3>Dirección</h3>
+          <p>{{usuario?.direccion}}</p>
+          <h3>Teléfono</h3>
+          <p>{{usuario?.telefono}}</p>
+          <h3>Ciudad</h3>
+          <p>{{usuario?.ciudad}}</p>
         </div>
-        <button class="action-button">Recibir compra</button>
       </div>
       
       <div class="pickup-info">
-        <h3>Retirar compra</h3>
-        <p>Retiro en agencias de Mercado Libre</p>
-        <p>Llega el lunes</p>
-        <p>Gratis<span class="new-badge">NUEVO</span></p>
-        <p>Beneficio Mercado Puntos</p>
+        <h3>Elija el medio de pago</h3>
+        <select class="form-control" name="categoria" [(ngModel)]="producto.categorias" required>
+          <option value="" selected>Seleccione una categoría</option>
+          <option *ngFor="" [value]="">Aqui van las categorias</option>
+      </select>
       </div>
     </div>
   
@@ -31,7 +32,7 @@
         <ng-container *ngIf="producto.imagenes && producto.imagenes.length > 0">
           <img [src]="producto.imagenes[0]" alt="Imagen del producto" class="product-image">
         </ng-container>
-        
+
        <h3>Descripcion:</h3>  <p>{{producto.descripcion}}</p>
       </div>
   
@@ -43,6 +44,5 @@
       <button class="continue-button">Continuar</button>
     </div>
   </div>
-  <!-- </div> -->
   
   
