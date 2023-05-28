@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ProductoGetDTO } from '../modelo/ProductoGetDTO';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MensajeDTO } from '../modelo/mensaje-dto';
-import { SharedService } from './shared.service';
 import { ProductoDTO } from '../modelo/ProductoDTO';
 
 @Injectable({
@@ -53,7 +50,4 @@ export class ProductoService {
   cambiarEstado(codigoProducto: number):Observable<MensajeDTO>{
     return this.http.get<MensajeDTO>(`${this.apiUrl}/estado/${codigoProducto}`);
   }
-
 }
-
-

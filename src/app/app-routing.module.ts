@@ -28,7 +28,7 @@ const routes: Routes = [
     { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
     { path: "detalle", component: DetallePComponent},
     { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
-    { path: "compra", component: CompraComponent},
+    { path: "compra/:texto", component: CompraComponent},
     { path: "detalle-producto/:texto", component: DetallePComponent},
     { path: "lista-usuarios", component: ListaUsuariosComponent},
     { path: "lista-productos", component: ListaProductosComponent},
