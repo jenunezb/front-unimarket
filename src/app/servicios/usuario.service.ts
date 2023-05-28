@@ -10,8 +10,7 @@ import { SharedService } from './shared.service';
 export class UsuarioService {
   private userUrl = "http://localhost:8080/api/usuario";
 
-  constructor(private http: HttpClient,private shared: SharedService ) { 
-    shared= shared.email;
+  constructor(private http: HttpClient ) { 
   }
 
   public obtener(codigo: number): Observable<MensajeDTO> {
@@ -30,7 +29,7 @@ export class UsuarioService {
     return this.http.get<MensajeDTO>(`${this.userUrl}/ciudades`);
   }
 
-  public cedula():Observable<number>{
-    return this.http.get<number>(`${this.userUrl}/cedula/${this.shared}`);
+  public cedula(correo:String):Observable<number>{
+    return this.http.get<number>(`${this.userUrl}/cedula/${correo}`);
   }
 }

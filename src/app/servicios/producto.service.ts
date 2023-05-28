@@ -23,6 +23,7 @@ export class ProductoService {
   }
 
   public agregarProducto(producto: ProductoDTO): Observable<MensajeDTO>{
+    console.log(producto.codigoVendedor);
     return this.http.post<MensajeDTO>(`${this.apiUrl}/crear`, producto );
   }
 

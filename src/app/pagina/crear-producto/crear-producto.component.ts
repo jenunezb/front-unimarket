@@ -7,6 +7,8 @@ import { ProductoService } from 'src/app/servicios/producto.service';
 import { Alerta } from 'src/app/modelo/alerta';
 import { SharedService } from 'src/app/servicios/shared.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { Token } from '@angular/compiler';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-crear-producto',
@@ -21,14 +23,17 @@ export class CrearProductoComponent {
   esEdicion: boolean;
   codigoProducto: number;
   txtBoton: string = "Crear Producto";
+  email:any;
+  codigoUsuario:any;
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
     
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) {
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService,private token: TokenService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
     this.categorias = [];
     this.esEdicion = false;
+    this.email=this.token.getEmail();
 
     this.route.params.subscribe(params => {
       this.codigoProducto = params["codigo"];
@@ -57,6 +62,9 @@ if(this.codigoProducto!= undefined){
   
 
   ngOnInit(): void {
+    this.usuarioService.cedula(this.email).subscribe((valor: any) => {
+      this.producto.codigoVendedor=valor.respuesta;
+    });
   }
 
   onFileChange(event: any) {
@@ -66,16 +74,13 @@ if(this.codigoProducto!= undefined){
   }
 
   public crearProducto() {
-    console.log(this.producto);
     const objeto = this;
     if (this.archivos != null && this.archivos.length > 0) {
-      
-      this.usuarioService.cedula().subscribe((valor: number) => {
-        const resultado: number = valor; 
-        this.producto.codigoVendedor=resultado;
+      this.usuarioService.cedula(this.email).subscribe((valor: any) => {
+        this.codigoUsuario = valor.respuesta;
       });
-
-
+      this.producto.codigoVendedor = this.codigoUsuario;
+      console.log(this.codigoUsuario);
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
             objeto.alerta = new Alerta(data.respuesta, "success");
