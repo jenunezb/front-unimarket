@@ -63,7 +63,8 @@ if(this.codigoProducto!= undefined){
 
   ngOnInit(): void {
     this.usuarioService.cedula(this.email).subscribe((valor: any) => {
-      this.producto.codigoVendedor=valor.respuesta;
+      this.codigoUsuario = valor.respuesta;
+      this.producto.codigoVendedor=this.codigoUsuario;
     });
   }
 
@@ -80,7 +81,6 @@ if(this.codigoProducto!= undefined){
         this.codigoUsuario = valor.respuesta;
       });
       this.producto.codigoVendedor = this.codigoUsuario;
-      console.log(this.codigoUsuario);
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
             objeto.alerta = new Alerta(data.respuesta, "success");

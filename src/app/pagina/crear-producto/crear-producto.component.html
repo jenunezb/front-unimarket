@@ -40,7 +40,7 @@
         <div *ngIf="mensajeAlerta" class="alert alert-danger" role="alert">
             {{ mensajeAlerta }}
         </div>
-        <button type="submit" [disabled]="f.invalid" class="btn btn-primary" (click)="crearProducto()">
-            <i class="fa-solid fa-circle-plus me-1"></i>{{txtBoton}}</button>
+        <form id="myForm"><button type="submit" [disabled]="f.invalid" class="btn btn-primary" (click)="crearProducto()">
+            <i class="fa-solid fa-circle-plus me-1"></i>{{txtBoton}}</button></form>
     </form>
 </form>

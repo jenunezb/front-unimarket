@@ -23,7 +23,6 @@ export class ProductoService {
   }
 
   public agregarProducto(producto: ProductoDTO): Observable<MensajeDTO>{
-    console.log(producto.codigoVendedor);
     return this.http.post<MensajeDTO>(`${this.apiUrl}/crear`, producto );
   }
 
@@ -40,7 +39,6 @@ export class ProductoService {
   }
 
   public listarProductosNombre(cadena: String): Observable<MensajeDTO>{
-    console.log(cadena);
     return this.http.get<MensajeDTO>(`${this.apiUrl}/busqueda/${cadena}`);
   }
 
