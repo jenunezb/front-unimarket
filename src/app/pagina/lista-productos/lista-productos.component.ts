@@ -42,27 +42,9 @@ export class ListaProductosComponent implements OnInit {
     });
   }
 
-
-   private actualizarMensaje() {
-     const tam = this.seleccionados.length;
-     if (tam != 0) {
-       if (tam == 1) {
-         this.textoBtnEliminar = "1 elemento";
-       } else {
-         this.textoBtnEliminar = tam + " elementos";
-       }
-     } else {
-       this.textoBtnEliminar = "";
-     }
-   }
-
- public cambiarEstado(){
-     this.seleccionados.forEach(productoSeleccionado => { 
-       this.productoServicio.eliminarProducto(productoSeleccionado.codigo).subscribe();
-       this.productos = this.productos.filter(i => i != productoSeleccionado);
-     });
-     this.seleccionados = []; 
-     this.actualizarMensaje(); 
+ public cambiarEstado(codigo: number){
+       this.productoServicio.cambiarEstado(codigo).subscribe();
+       window.location.reload();
      }
 
     public getProductos(){

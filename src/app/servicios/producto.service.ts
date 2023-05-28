@@ -50,6 +50,10 @@ export class ProductoService {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/listarMod`);
   }
 
+  cambiarEstado(codigoProducto: number):Observable<MensajeDTO>{
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/estado/${codigoProducto}`);
+  }
+
 }
 
 

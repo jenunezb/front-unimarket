@@ -29,7 +29,7 @@ export class AppComponent {
     this.actualizarSesion(this.tokenService.isLogged());
     if(this.email=="juesnube@gmail.com"){
       this.email="ADMINISTRADOR";
-      this.router.navigate(['lista-usuarios']);
+      this.router.navigate(['lista-productos']);
     }
   }
 
@@ -42,7 +42,7 @@ export class AppComponent {
     }
     if(this.email=="juesnube@gmail.com"){
       this.email="ADMINISTRADOR";
-      this.router.navigate(['lista-usuarios']);
+      this.router.navigate(['lista-productos']);
     }
   }
 
