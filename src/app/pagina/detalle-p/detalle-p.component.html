@@ -2,7 +2,9 @@
 
 <div class="detalle-producto-container">
   <div class="producto-imagen">
-    <img img [src]="producto.imagenes[0]" alt="{{producto.nombre}}" class="product-image">
+    <ng-container *ngIf="producto.imagenes && producto.imagenes.length > 0">
+      <img [src]="producto.imagenes[0]" alt="Imagen del producto" class="product-image">
+    </ng-container>
   </div>
   <div class="producto-info">
     <h2 class="producto-nombre">{{producto.nombre}}</h2>

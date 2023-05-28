@@ -5,6 +5,8 @@ import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { Alerta } from 'src/app/modelo/alerta';
+import { SharedService } from 'src/app/servicios/shared.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-crear-producto',
@@ -22,7 +24,7 @@ export class CrearProductoComponent {
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
     
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router) {
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
     this.categorias = [];
@@ -30,16 +32,18 @@ export class CrearProductoComponent {
 
     this.route.params.subscribe(params => {
       this.codigoProducto = params["codigo"];
-      this.productoService.obtenerProducto(this.codigoProducto).subscribe({
-        next: data => {
-          const objetoProducto = data.respuesta;
-          if (objetoProducto != null) {
-            this.producto = objetoProducto;
-            this.txtBoton = 'Editar Producto';
-          }
+if(this.codigoProducto!= undefined){
+  this.productoService.obtenerProducto(this.codigoProducto).subscribe({
+    next: data => {
+      const objetoProducto = data.respuesta;
+      if (objetoProducto != null) {
+        this.producto = objetoProducto;
+        this.txtBoton = 'Editar Producto';
+      }
 
-        }
-      });
+    }
+  });
+}
     });
     this.productoService.categorias().subscribe(
       respuesta => {
@@ -65,6 +69,13 @@ export class CrearProductoComponent {
     console.log(this.producto);
     const objeto = this;
     if (this.archivos != null && this.archivos.length > 0) {
+      
+      this.usuarioService.cedula().subscribe((valor: number) => {
+        const resultado: number = valor; 
+        this.producto.codigoVendedor=resultado;
+      });
+
+
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
             objeto.alerta = new Alerta(data.respuesta, "success");
@@ -74,7 +85,6 @@ export class CrearProductoComponent {
         }
       });
       this.router.navigate(["/gestion-productos"]);
-      console.log(this.producto);
     } else {
       objeto.mensajeAlerta = 'Debe seleccionar al menos una imagen';
     }
@@ -86,7 +96,6 @@ export class CrearProductoComponent {
     this.productoService.categorias().subscribe({
       next: data => {
         this.categorias = data.respuesta;
-        console.log(data);
       },
       error: error => {
         console.log(error.error);
