@@ -27,7 +27,8 @@ export class CrearProductoComponent {
 
   constructor(private imagenService: ImagenService, private categoriaService: CategoriaService,
     
-    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService,private token: TokenService) {
+    private productoService: ProductoService, private route: ActivatedRoute, private router: Router, 
+    private usuarioService: UsuarioService,private token: TokenService) {
     this.producto = new ProductoDTO();
     this.codigoProducto = 0;
     this.categorias = [];
@@ -61,6 +62,11 @@ if(this.codigoProducto!= undefined){
   
 
   ngOnInit(): void {
+
+    if(this.token.getEmail()=="juesnube@gmail.com"){
+      this.email="ADMINISTRADOR";
+      this.router.navigate(['lista-usuarios']);
+    }
     this.usuarioService.cedula(this.email).subscribe((valor: any) => {
       this.codigoUsuario = valor.respuesta;
       this.producto.codigoVendedor=this.codigoUsuario;

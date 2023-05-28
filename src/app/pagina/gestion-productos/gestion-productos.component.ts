@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -29,8 +29,7 @@ export class GestionProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.token.getEmail());
- this.getProductosVendedor();
+    this.getProductosVendedor();
   }
 
   public seleccionar(producto: ProductoGetDTO, estado: boolean) {
@@ -78,7 +77,6 @@ export class GestionProductosComponent implements OnInit {
     }
 
     public getProductosVendedor(){
-        console.log(this.token.getEmail());
       if( this.token.getEmail()!=""){
         this.productoServicio.getProductosVendedor(this.token.getEmail()).subscribe({
           next: data => {

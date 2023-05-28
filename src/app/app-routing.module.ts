@@ -14,7 +14,6 @@ import { CompraComponent } from './pagina/compra/compra.component';
 import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
 import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
 
-
 const routes: Routes = [
     { path: "", component: InicioComponent},
     { path: "login", component: LoginComponent},

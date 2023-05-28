@@ -45,6 +45,11 @@ export class ProductoService {
   getProductosVendedor(codigoUsuario: String): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/misproductos/${codigoUsuario}`);
   }
+
+  getProductosMod(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.apiUrl}/listarMod`);
+  }
+
 }
 
 
