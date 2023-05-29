@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
+import { FavoritoDTO } from 'src/app/modelo/favoritoDTO';
 import { FavoritosService } from 'src/app/servicios/favoritos.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
@@ -21,6 +22,7 @@ export class ListarTodosProductosComponent implements OnInit {
   codigoUsuario: number = 0;
   email: String = "";
   usuario: any;
+  favoritoDTO:FavoritoDTO;
 
   constructor(private productoServicio: ProductoService,
     private sharedService: SharedService, private token: TokenService,
@@ -29,6 +31,7 @@ export class ListarTodosProductosComponent implements OnInit {
     this.email = token.getEmail();
     this.productos = [];
     this.objeto = this;
+    this.favoritoDTO = new FavoritoDTO;
   }
 
   ngOnInit(): void {
@@ -57,7 +60,16 @@ export class ListarTodosProductosComponent implements OnInit {
 
   agregarFavoritos(item: any) {
 if(this.email!==""){
-  this.favoritoServicio.agregarFavoritos(item, this.codigoUsuario)
+
+  this.favoritoDTO.codigoUsuario=this.codigoUsuario;
+  this.favoritoDTO.codigoProducto= item;
+console.log(this.favoritoDTO, "prueba");
+
+  this.favoritoServicio.agregarFavoritos(this.favoritoDTO).subscribe((valor: any) => {
+    this.usuario = valor.respuesta;
+  });
+
+
   localStorage.setItem('favoritos', JSON.stringify(item));
   this.showMessage = true;
  setTimeout(() => {
