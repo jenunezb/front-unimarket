@@ -82,7 +82,6 @@ this.usuarioServicio.obtener(this.codigo).subscribe((valor:any)=>{
   }
 
    public realizarCompra(){
-    console.log("en tres")
 
 //Realizar compraDto
 
@@ -100,9 +99,6 @@ this.detallecompradtooA.push(this.detallecompradtoo);
 //Continuar compraDTO
 
 this.compraDTO.detalleCompraDTO = this.detallecompradtooA;
-console.log(this.compraDTO, "yosi", this.detallecompradtoo, "ana", this.detallecompradtooA);
-
-
       this.compraService.compra(this.compraDTO).subscribe((valor: any)=>{
         // this.codigo=valor;
         // console.log(this.codigo)
