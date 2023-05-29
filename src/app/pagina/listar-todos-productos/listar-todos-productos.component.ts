@@ -69,7 +69,6 @@ console.log(this.favoritoDTO, "prueba");
     this.usuario = valor.respuesta;
   });
 
-
   localStorage.setItem('favoritos', JSON.stringify(item));
   this.showMessage = true;
  setTimeout(() => {
