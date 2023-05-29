@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Alerta } from 'src/app/modelo/alerta';
 import { FavoritosService } from 'src/app/servicios/favoritos.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { TokenService } from 'src/app/servicios/token.service';
@@ -15,11 +16,14 @@ export class FavoritosComponent implements OnInit{
   favoritos:any;
   producto:any;
   usuario:any;
+  objeto: any;
+  
   constructor(private token: TokenService,
     private favoritosService: FavoritosService, private route: Router,
     private usuarioService: UsuarioService, private productoService: ProductoService){
     this.email=this.token.getEmail();
     this.favoritos=[];
+    this.objeto = this;
   }
 
   ngOnInit(): void {
@@ -48,10 +52,16 @@ export class FavoritosComponent implements OnInit{
             const { id, codigoUsuario } = this.favoritos[0];
             console.log(codigoUsuario);
             console.log(this.usuario);
-            this.favoritos=this.productoService.getProductos().subscribe((valor: any) => {
-              this.favoritos = valor.respuesta;
-            });;
-            console.log(this.favoritos)
+            this.productoService.getProductos().subscribe({
+              next: data => {
+                this.objeto.alerta = new Alerta(data.respuesta, "success");
+                this.producto = data.respuesta;
+                console.log(this.producto)
+              },
+              error: error => {
+                this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
+              }
+            });
           }
           }
       });
