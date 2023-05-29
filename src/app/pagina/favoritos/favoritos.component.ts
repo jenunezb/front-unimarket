@@ -23,24 +23,35 @@ export class FavoritosComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.obtenerCliente();
     this.getProductos();
   }
-  
+  public obtenerCliente() {
+    if (this.email !== "") {
+      console.log(this.email);
+      this.usuarioService.cedula(this.email).subscribe((valor: any) => {
+        this.usuario = valor.respuesta;
+        this.usuarioService.obtener(this.usuario).subscribe((valor: any) => {
+          this.usuario = valor.respuesta;
+        });
+      });
+    }
+  }
   public getProductos(){
+
     if( this.token.getEmail()!=""){
+
       this.favoritosService.listarProductos().subscribe({
         next: data => {
           this.favoritos = data.respuesta;
           if (Array.isArray(this.favoritos) && this.favoritos.length > 0) {
-            const { codigoProducto, codigoUsuario } = this.favoritos[0];
-            console.log(codigoProducto); 
+            const { id, codigoUsuario } = this.favoritos[0];
             console.log(codigoUsuario);
-            this.usuarioService.obtener(codigoUsuario).subscribe({
-              next: data => {
-                this.favoritos = data.respuesta;
-                console.log(this.favoritos);
-                }
-            });
+            console.log(this.usuario);
+            this.favoritos=this.productoService.getProductos().subscribe((valor: any) => {
+              this.favoritos = valor.respuesta;
+            });;
+            console.log(this.favoritos)
           }
           }
       });

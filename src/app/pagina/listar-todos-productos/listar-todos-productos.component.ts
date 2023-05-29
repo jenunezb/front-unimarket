@@ -22,7 +22,7 @@ export class ListarTodosProductosComponent implements OnInit {
   codigoUsuario: number = 0;
   email: String = "";
   usuario: any;
-  favoritoDTO:FavoritoDTO;
+  favoritoDTO: FavoritoDTO;
 
   constructor(private productoServicio: ProductoService,
     private sharedService: SharedService, private token: TokenService,
@@ -52,40 +52,41 @@ export class ListarTodosProductosComponent implements OnInit {
       }
     });
   }
-
+  public obtenerCliente() {
+    if (this.email !== "") {
+      console.log(this.email);
+      this.usuarioServicio.cedula(this.email).subscribe((valor: any) => {
+        this.codigoUsuario = valor.respuesta;
+        this.usuarioServicio.obtener(this.codigoUsuario).subscribe((valor: any) => {
+          this.usuario = valor.respuesta;
+        });
+      });
+    }
+  }
   guardarCodigoProducto(codigo: number) {
     this.sharedService.codigoProducto = codigo;
     console.log(codigo);
   }
 
   agregarFavoritos(item: any) {
-if(this.email!==""){
+    if (this.email !== "") {
 
-  this.favoritoDTO.codigoUsuario=this.codigoUsuario;
-  this.favoritoDTO.codigoProducto= item;
+      this.favoritoDTO.codigoUsuario = this.usuario.codigo;
+      console.log(this.favoritoDTO.codigoUsuario)
+      this.favoritoDTO.codigoProducto = item;
 
-  this.favoritoServicio.agregarFavoritos(this.favoritoDTO).subscribe((valor: any) => {
-    this.usuario = valor.respuesta;
-  });
-
-  localStorage.setItem('favoritos', JSON.stringify(item));
-  this.showMessage = true;
- setTimeout(() => {
-    this.showMessage = false;
-  }, 3000); // Oculta el mensaje después de 3 segundos
-}else{
-      this.route.navigate(["/login"]);
-}
-}
-  public obtenerCliente() {
-    if(this.email!==""){
-      console.log(this.email);
-      this.usuarioServicio.cedula(this.email).subscribe((valor: any) => {
-        this.codigoUsuario = valor.respuesta;
-       this.usuarioServicio.obtener(this.codigoUsuario).subscribe((valor: any) => {
-          this.usuario = valor.respuesta;
-        });
+      this.favoritoServicio.agregarFavoritos(this.favoritoDTO).subscribe((valor: any) => {
+        this.usuario = valor.respuesta;
       });
-   }
+
+      localStorage.setItem('favoritos', JSON.stringify(item));
+      this.showMessage = true;
+      setTimeout(() => {
+        this.showMessage = false;
+      }, 3000); // Oculta el mensaje después de 3 segundos
+    } else {
+      this.route.navigate(["/login"]);
     }
+  }
+
 }

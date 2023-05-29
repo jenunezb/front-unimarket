@@ -1,4 +1,4 @@
-/* listar-todos-productos.component.css */
+
 .products-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -56,4 +56,12 @@ h1 {
   border: 1px solid #ddd;
   color: #333;
   padding: 10px;
+}
+
+.corazon {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  transform: rotate(45deg);
 }
