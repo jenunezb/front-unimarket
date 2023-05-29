@@ -15,4 +15,8 @@ export class CompraService {
   public compra(compra: CompraDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.catURL}`, compra);
   }
+
+  public obtenerlistaCompra(codigoUsuario: number): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.catURL}/listar/${codigoUsuario}`);
+  }
 }
