@@ -13,10 +13,10 @@ export class FavoritosService {
 
   constructor(private http: HttpClient) { }
     public agregarFavoritos(favoritos:FavoritoDTO):Observable<MensajeDTO>{
-      // const favoritos = {
-      //   codigoProducto: codigoProducto,
-      //   codigoUsuario: codigoUsuario
-      // };
       return this.http.post<MensajeDTO>(`${this.catURL}/crear`,favoritos);
     }
+
+    public listarProductos(): Observable<MensajeDTO> {
+      return this.http.get<MensajeDTO>(`${this.catURL}`);
   }
+}
