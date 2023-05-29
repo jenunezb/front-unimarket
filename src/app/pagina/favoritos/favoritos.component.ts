@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 export class FavoritosComponent implements OnInit{
   email:any;
   favoritos:any;
-  producto:any;
+  productos: any[] = [];
   usuario:any;
   objeto: any;
   
@@ -52,11 +52,19 @@ export class FavoritosComponent implements OnInit{
             const { id, codigoUsuario } = this.favoritos[0];
             console.log(codigoUsuario);
             console.log(this.usuario);
-            this.productoService.getProductos().subscribe({
+            this.favoritosService.listarProductos().subscribe({
               next: data => {
-                this.objeto.alerta = new Alerta(data.respuesta, "success");
-                this.producto = data.respuesta;
-                console.log(this.producto)
+                this.favoritos = data.respuesta;
+                if (Array.isArray(this.favoritos) && this.favoritos.length > 0) {
+                const{codigoUsuario} = this.favoritos[0];
+                console.log(codigoUsuario);
+                 this.productoService.obtenerProducto(codigoUsuario).subscribe({
+                  next: data => {
+                    this.productos = [data.respuesta];
+                    console.log(this.productos);
+                  }
+                 });
+                }
               },
               error: error => {
                 this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
