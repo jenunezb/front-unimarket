@@ -20,9 +20,10 @@
             <!-- <p class="product-description">{{item.descripcion}}</p> -->
             <p class="product-price">${{item.precio}}</p>
            
-            <button class="favorite-button" (click)="addToFavorites(item)">
+            <button class="favorite-button" (click)="agregarFavoritos(item.codigo)">
                 <i class="fas fa-heart"></i>
             </button>
+           
         </div>
     </div>
     <div class="message" *ngIf="showMessage">
