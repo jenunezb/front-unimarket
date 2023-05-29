@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de productos</title>
     <link rel="stylesheet" href="listar-todos-productos.component.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
 </head>
 <body>
     <h1>Tienda de productos</h1>
@@ -17,8 +19,14 @@
             <h2 class="product-title">{{item.nombre}}</h2>
             <!-- <p class="product-description">{{item.descripcion}}</p> -->
             <p class="product-price">${{item.precio}}</p>
+           
+            <button class="favorite-button" (click)="addToFavorites(item)">
+                <i class="fas fa-heart"></i>
+            </button>
         </div>
     </div>
-
+    <div class="message" *ngIf="showMessage">
+        Tu producto se agregó a favoritos.
+    </div>
 </body>
 </html>

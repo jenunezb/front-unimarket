@@ -1,5 +1,5 @@
 /* listar-todos-productos.component.css */
-
+@import "~@fortawesome/fontawesome-free/css/all.css";
 .products-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -37,4 +37,24 @@
 
 h1 {
   text-align: center;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+}
+
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 10px;
 }

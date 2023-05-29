@@ -4,6 +4,7 @@ import { Alerta } from 'src/app/modelo/alerta';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
 
+
 @Component({
   selector: 'app-listar-todos-productos',
   templateUrl: './listar-todos-productos.component.html',
@@ -12,7 +13,7 @@ import { SharedService } from 'src/app/servicios/shared.service';
 export class ListarTodosProductosComponent implements OnInit {
   productos: ProductoGetDTO[];
   objeto: any;
-
+  showMessage: boolean = false;
   constructor(private productoServicio: ProductoService,  
     private sharedService:SharedService){
     this.productos = [];
@@ -40,5 +41,17 @@ export class ListarTodosProductosComponent implements OnInit {
   guardarCodigoProducto(codigo: number){
     this.sharedService.codigoProducto = codigo;
     console.log(codigo);
+  }
+
+  addToFavorites(item: any) {
+    // Agrega lógica para guardar el producto en favoritos
+    // Puedes usar localStorage, un servicio, o cualquier otra forma de almacenamiento
+    // Ejemplo de almacenamiento en localStorage:
+    localStorage.setItem('favoritos', JSON.stringify(item));
+
+    this.showMessage = true;
+    setTimeout(() => {
+      this.showMessage = false;
+    }, 3000); // Oculta el mensaje después de 3 segundos
   }
 }
