@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
 import { CompraDTO } from 'src/app/modelo/compraDTO';
+import { DetalleCompraDTOO } from 'src/app/modelo/detalle-compra-dtoo';
 import { CompraService } from 'src/app/servicios/compra.service';
 import { MetodoPagoServicioService } from 'src/app/servicios/metodo-pago-servicio';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -25,6 +26,8 @@ export class CompraComponent implements OnInit {
   usuario: any;
   email:String="";
   compraDTO: CompraDTO;
+  detallecompradtoo:DetalleCompraDTOO;
+  detallecompradtooA: DetalleCompraDTOO[]=[];
 
   constructor(private productoServicio: ProductoService, private router: Router, private sharedData: SharedService,
     private token: TokenService, private usuarioServicio: UsuarioService, private metodoPago: MetodoPagoServicioService,
@@ -33,6 +36,7 @@ export class CompraComponent implements OnInit {
     this.productos = [];
     this.email=token.getEmail();
     this.compraDTO=new CompraDTO();
+    this.detallecompradtoo = new DetalleCompraDTOO;
   }
   ngOnInit(): void {
     const url: string = window.location.href;
@@ -79,15 +83,29 @@ this.usuarioServicio.obtener(this.codigo).subscribe((valor:any)=>{
 
    public realizarCompra(){
     console.log("en tres")
-      this.compraDTO.codigoUsuario=1;
-      console.log(this.compraDTO.codigoUsuario)
-      this.compraDTO.unidades=1;
-      console.log(this.compraDTO.unidades)
-      this.compraDTO.precio=this.producto.precio;
-      console.log(this.compraDTO.precio)
+
+//Realizar compraDto
+
+this.compraDTO.codigoUsuario=1;
+this.compraDTO.metodoPago = "NEQUI";
+
+//Realizar lo de detalleCompraDtoo
+
+this.detallecompradtoo.codigoProducto = this.producto.codigo;
+this.detallecompradtoo.precio = this.producto.precio;
+this.detallecompradtoo.unidades= 1;
+
+this.detallecompradtooA.push(this.detallecompradtoo);
+
+//Continuar compraDTO
+
+this.compraDTO.detalleCompraDTO = this.detallecompradtooA;
+console.log(this.compraDTO, "yosi", this.detallecompradtoo, "ana", this.detallecompradtooA);
+
+
       this.compraService.compra(this.compraDTO).subscribe((valor: any)=>{
-        this.codigo=valor;
-        console.log(this.codigo)
+        // this.codigo=valor;
+        // console.log(this.codigo)
       });
    }
 }

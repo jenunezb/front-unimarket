@@ -1,5 +1,7 @@
+import { DetalleCompraDTOO } from "./detalle-compra-dtoo";
+
 export class CompraDTO {
-    codigoUsuario: number = 0;
-    unidades: number = 0;
-    precio: number = 0;
-    }
+  codigoUsuario: number = 0;
+  metodoPago: String = "";
+  detalleCompraDTO: DetalleCompraDTOO[] = [];
+  }
