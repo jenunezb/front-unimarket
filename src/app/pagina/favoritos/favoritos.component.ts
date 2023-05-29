@@ -11,18 +11,18 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   templateUrl: './favoritos.component.html',
   styleUrls: ['./favoritos.component.css']
 })
-export class FavoritosComponent implements OnInit{
-  email:any;
-  favoritos:any;
+export class FavoritosComponent implements OnInit {
+  email: any;
+  favoritos: any;
   productos: any[] = [];
-  usuario:any;
+  usuario: any;
   objeto: any;
-  
+
   constructor(private token: TokenService,
     private favoritosService: FavoritosService, private route: Router,
-    private usuarioService: UsuarioService, private productoService: ProductoService){
-    this.email=this.token.getEmail();
-    this.favoritos=[];
+    private usuarioService: UsuarioService, private productoService: ProductoService) {
+    this.email = this.token.getEmail();
+    this.favoritos = [];
     this.objeto = this;
   }
 
@@ -41,40 +41,26 @@ export class FavoritosComponent implements OnInit{
       });
     }
   }
-  public getProductos(){
-
-    if( this.token.getEmail()!=""){
-
+  public getProductos() {
+    if (this.token.getEmail() != "") {
       this.favoritosService.listarProductos().subscribe({
         next: data => {
           this.favoritos = data.respuesta;
           if (Array.isArray(this.favoritos) && this.favoritos.length > 0) {
-            const { id, codigoUsuario } = this.favoritos[0];
-            console.log(codigoUsuario);
-            console.log(this.usuario);
-            this.favoritosService.listarProductos().subscribe({
-              next: data => {
-                this.favoritos = data.respuesta;
-                if (Array.isArray(this.favoritos) && this.favoritos.length > 0) {
-                const{codigoUsuario} = this.favoritos[0];
-                console.log(codigoUsuario);
-                 this.productoService.obtenerProducto(codigoUsuario).subscribe({
-                  next: data => {
-                    this.productos = [data.respuesta];
-                    console.log(this.productos);
-                  }
-                 });
-                }
-              },
-              error: error => {
-                this.objeto.alerta = new Alerta(error.error.respuesta, "danger");
-              }
+            const codigosUsuarios = this.favoritos.map((favorito: any) => favorito.codigoUsuario);
+            const obtenerProductosPromises = codigosUsuarios.map((codigoUsuario: any) =>
+              this.productoService.obtenerProducto(codigoUsuario).toPromise()
+            );
+            Promise.all(obtenerProductosPromises).then((productos: any) => {
+              this.productos = productos;
+              console.log(this.productos);
             });
           }
-          }
+        }
       });
-    }else{
+    } else {
       this.route.navigate(["/"]);
     }
   }
+  
 }
