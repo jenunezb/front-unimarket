@@ -1,5 +1,4 @@
 /* listar-todos-productos.component.css */
-@import "~@fortawesome/fontawesome-free/css/all.css";
 .products-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

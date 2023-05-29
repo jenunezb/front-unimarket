@@ -1,16 +1,10 @@
 {
   "hosting": {
-  "public": "dist/unimarket",
-  "ignore": [
-  "firebase.json",
-  "**/.*",
-  "**/node_modules/**"
-  ],
-  "rewrites": [
-  {
-  "source": "**",
-  "destination": "/index.html"
+    "public": "dist/unimarket",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
-  ]
-  }
-  }
+}

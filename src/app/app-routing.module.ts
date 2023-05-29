@@ -14,6 +14,8 @@ import { CompraComponent } from './pagina/compra/compra.component';
 import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
 import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
 import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
+import { MiscomprasComponent } from './pagina/miscompras/miscompras.component';
+
 const routes: Routes = [
     { path: "", component: InicioComponent},
     { path: "login", component: LoginComponent},
@@ -32,7 +34,8 @@ const routes: Routes = [
     { path: "detalle-producto/:texto", component: DetallePComponent},
     { path: "lista-usuarios", component: ListaUsuariosComponent},
     { path: "lista-productos", component: ListaProductosComponent},
-    { path: "favoritos", component: FavoritosComponent}
+    { path: "favoritos", component: FavoritosComponent},
+    { path: "miscompras", component: MiscomprasComponent}
 ];
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

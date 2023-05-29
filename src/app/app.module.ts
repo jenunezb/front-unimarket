@@ -20,6 +20,7 @@ import { CompraComponent } from './pagina/compra/compra.component';
 import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
 import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
 import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
+import { MiscomprasComponent } from './pagina/miscompras/miscompras.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
     ListaUsuariosComponent,
     ListaProductosComponent,
     FavoritosComponent,
+    MiscomprasComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [SharedService],

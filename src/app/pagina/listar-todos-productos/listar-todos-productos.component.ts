@@ -63,12 +63,10 @@ if(this.email!==""){
 
   this.favoritoDTO.codigoUsuario=this.codigoUsuario;
   this.favoritoDTO.codigoProducto= item;
-console.log(this.favoritoDTO, "prueba");
 
   this.favoritoServicio.agregarFavoritos(this.favoritoDTO).subscribe((valor: any) => {
     this.usuario = valor.respuesta;
   });
-
 
   localStorage.setItem('favoritos', JSON.stringify(item));
   this.showMessage = true;
