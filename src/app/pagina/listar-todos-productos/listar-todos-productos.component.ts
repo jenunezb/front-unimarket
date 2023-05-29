@@ -23,6 +23,7 @@ export class ListarTodosProductosComponent implements OnInit {
   email: String = "";
   usuario: any;
   favoritoDTO: FavoritoDTO;
+  error: any;
 
   constructor(private productoServicio: ProductoService,
     private sharedService: SharedService, private token: TokenService,
@@ -70,14 +71,18 @@ export class ListarTodosProductosComponent implements OnInit {
 
   agregarFavoritos(item: any) {
     if (this.email !== "") {
-
       this.favoritoDTO.codigoUsuario = this.usuario.codigo;
-      console.log(this.favoritoDTO.codigoUsuario)
       this.favoritoDTO.codigoProducto = item;
-
-      this.favoritoServicio.agregarFavoritos(this.favoritoDTO).subscribe((valor: any) => {
-        this.usuario = valor.respuesta;
-      });
+  
+      console.log("codigo del usuario " + this.favoritoDTO.codigoUsuario + " codigo del producto: " + item);
+      this.favoritoServicio.agregarFavoritos(this.favoritoDTO)
+        .subscribe((valor: any) => {
+          this.usuario = valor.respuesta;
+        },
+        (error) => {
+          console.error('Error al agregar favorito:', error);
+          // Puedes mostrar una alerta, notificación o realizar alguna acción adicional en caso de error
+        });
 
       localStorage.setItem('favoritos', JSON.stringify(item));
       this.showMessage = true;

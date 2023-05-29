@@ -19,4 +19,7 @@ export class FavoritosService {
     public listarProductos(): Observable<MensajeDTO> {
       return this.http.get<MensajeDTO>(`${this.catURL}`);
   }
+  public eliminarProducto(codigo: number) {
+    return this.http.delete<MensajeDTO>(`${this.catURL}/${codigo}`);
+  }
 }

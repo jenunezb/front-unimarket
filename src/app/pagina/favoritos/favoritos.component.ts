@@ -47,8 +47,8 @@ export class FavoritosComponent implements OnInit {
         next: data => {
           this.favoritos = data.respuesta;
           if (Array.isArray(this.favoritos) && this.favoritos.length > 0) {
-            const codigosUsuarios = this.favoritos.map((favorito: any) => favorito.codigoUsuario);
-            const obtenerProductosPromises = codigosUsuarios.map((codigoUsuario: any) =>
+            const codigoProductos = this.favoritos.map((favorito: any) => favorito.codigoProducto);
+            const obtenerProductosPromises = codigoProductos.map((codigoUsuario: any) =>
               this.productoService.obtenerProducto(codigoUsuario).toPromise()
             );
             Promise.all(obtenerProductosPromises).then((productos: any) => {
@@ -62,5 +62,12 @@ export class FavoritosComponent implements OnInit {
       this.route.navigate(["/"]);
     }
   }
-  
+  public quitarProducto(codigo:number){
+    console.log(codigo);
+    console.log(this.usuario.codigo);
+    this.favoritosService.eliminarProducto(this.favoritos.codigo).subscribe((valor: any) => {
+      this.usuario = valor.respuesta;
+      console.log(this.usuario);
+    });
+  }
 }

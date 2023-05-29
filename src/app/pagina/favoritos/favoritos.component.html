@@ -30,7 +30,7 @@
           <p>{{ item.respuesta.categorias }}</p>
         </td>
         <td>
-          <button type="button" class="crear-button" routerLink="/editar-producto/">
+          <button type="button" class="crear-button" (click)="quitarProducto(item.respuesta.codigo)">
             <i class="fa-solid fa-pen"></i> Quitar de favoritos
           </button>
         </td>
