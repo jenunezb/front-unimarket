@@ -7,14 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FavoritosService {
+
   private catURL = "http://localhost:8080/api/favoritos";
+
   constructor(private http: HttpClient) { }
+
     public agregarFavoritos(codigoProducto: number, codigoUsuario:number):Observable<MensajeDTO>{
       const favoritos = {
         codigoProducto: codigoProducto,
         codigoUsuario: codigoUsuario
       };
+      console.log(favoritos)
       return this.http.post<MensajeDTO>(`${this.catURL}/crear`,favoritos);
     }
   }
-
