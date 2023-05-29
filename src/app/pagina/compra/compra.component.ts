@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoGetDTO } from 'src/app/modelo/ProductoGetDTO';
 import { Alerta } from 'src/app/modelo/alerta';
+import { CompraDTO } from 'src/app/modelo/compraDTO';
+import { CompraService } from 'src/app/servicios/compra.service';
 import { MetodoPagoServicioService } from 'src/app/servicios/metodo-pago-servicio';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SharedService } from 'src/app/servicios/shared.service';
@@ -24,10 +26,12 @@ export class CompraComponent implements OnInit {
   email:String="";
 
   constructor(private productoServicio: ProductoService, private router: Router, private sharedData: SharedService,
-    private token: TokenService, private usuarioServicio: UsuarioService, private metodoPago: MetodoPagoServicioService) {
+    private token: TokenService, private usuarioServicio: UsuarioService, private metodoPago: MetodoPagoServicioService,
+    private compraService: CompraService, private compraDTO: CompraDTO) {
     this.producto = this.producto;
     this.productos = [];
     this.email=token.getEmail();
+    this.compraDTO=this.compraDTO;
   }
   ngOnInit(): void {
     const url: string = window.location.href;
@@ -72,4 +76,13 @@ this.usuarioServicio.obtener(this.codigo).subscribe((valor:any)=>{
      });
   }
 
+  public realizarCompra(){
+    this.compraDTO.codigoProducto=this.producto.codigo;
+    this.compraDTO.unidades=1;
+    this.compraDTO.precio=this.producto.precio;
+    this.compraService.compra(this.compraDTO).subscribe((valor: any)=>{
+      this.codigo=valor;
+      console.log(this.codigo)
+    });
+  }
 }

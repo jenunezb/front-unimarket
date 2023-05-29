@@ -1,6 +1,6 @@
 <div class="card p-4">
     <div class="mb-3">
-        <button type="button"> <i class="btn btn-success me-2" routerLink="/crear-producto"></i> Crear</button>
+        <button class="crear-button" routerLink="/crear-producto"> Crear</button> <span class="button-separator"></span>
         <button type="button" class="btn btn-danger" [disabled]="seleccionados.length == 0"
                         data-bs-toggle="modal" data-bs-target="#borrar"><i class="fa-solid fa-trash me-1"></i>
                         Eliminar {{textoBtnEliminar}}</button>

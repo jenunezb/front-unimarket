@@ -79,3 +79,19 @@
     max-height: 400px;
     object-fit: contain;
   }
+
+  .button-separator {
+    margin: 0 40px; /* Ajusta el valor de margen según tus necesidades */
+  }
+
+  .agregar-button {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
