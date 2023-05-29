@@ -11,7 +11,8 @@ export class CompraService {
 
   private catURL = "http://localhost:8080/api/compra";
   constructor(private http: HttpClient) { }
+
   public compra(compra: CompraDTO): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.catURL}`);
+    return this.http.post<MensajeDTO>(`${this.catURL}`, compra);
   }
 }
