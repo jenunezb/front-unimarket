@@ -19,6 +19,7 @@ import { DetallePComponent } from './pagina/detalle-p/detalle-p.component';
 import { CompraComponent } from './pagina/compra/compra.component';
 import { ListaUsuariosComponent } from './pagina/lista-usuarios/lista-usuarios.component';
 import { ListaProductosComponent } from './pagina/lista-productos/lista-productos.component';
+import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ListaProductosComponent } from './pagina/lista-productos/lista-producto
     CompraComponent,
     ListaUsuariosComponent,
     ListaProductosComponent,
+    FavoritosComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule, RouterModule],
   providers: [SharedService],

@@ -87,8 +87,21 @@ if(this.codigoProducto!= undefined){
       });
       this.producto.codigoVendedor = this.codigoUsuario;
       (this.producto.categoria as any) = [this.producto.categoria];
-      console.log(this.producto);
 
+        if(this.txtBoton === 'Editar Producto'){
+          console.log("si entre a la condicción." , this.codigoProducto);
+          this.productoService.editarProducto(this.codigoProducto,this.producto).subscribe({
+            next: data => {
+
+              objeto.alerta = new Alerta(data.respuesta, "success");
+            },
+            error: error => {
+              objeto.alerta = new Alerta(error.error.respuesta, "danger");
+          }
+          });
+
+      }else{
+        console.log("No entre a la condicción.");
         this.productoService.agregarProducto(this.producto).subscribe({
           next: data => {
 
@@ -97,7 +110,10 @@ if(this.codigoProducto!= undefined){
           error: error => {
             objeto.alerta = new Alerta(error.error.respuesta, "danger");
         }
-      });
+        });
+    }
+
+
       this.router.navigate(["/gestion-productos"]);
     } else {
       objeto.mensajeAlerta = 'Debe seleccionar al menos una imagen';

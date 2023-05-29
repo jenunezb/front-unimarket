@@ -12,7 +12,7 @@ export class ProductoService {
 
   private apiUrl = "http://localhost:8080/api/producto";
 
-  constructor( private http:HttpClient) {   
+  constructor( private http:HttpClient) {
   }
 
   getProductos(): Observable<MensajeDTO> {
@@ -30,7 +30,7 @@ export class ProductoService {
   public obtenerProducto(codigoProducto: number): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/${codigoProducto}`);
   }
-  
+
   public categorias():Observable<any> {
     return this.http.get<MensajeDTO>(`${this.apiUrl}/categorias`);
   }
@@ -49,5 +49,9 @@ export class ProductoService {
 
   cambiarEstado(codigoProducto: number):Observable<MensajeDTO>{
     return this.http.get<MensajeDTO>(`${this.apiUrl}/estado/${codigoProducto}`);
+  }
+
+  public editarProducto(codigoProducto: number, producto: ProductoDTO): Observable<MensajeDTO>{
+    return this.http.put<MensajeDTO>(`${this.apiUrl}/editar/${codigoProducto}`, producto );
   }
 }
